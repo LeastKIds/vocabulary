@@ -36,7 +36,7 @@
     - Ex) 김진홍 : 깃 커밋 이용 방법
 - 데이터베이스 설계
 
-![image-20210721192808999](/Users/gimjinhong/Library/Application Support/typora-user-images/image-20210721192808999.png)
+<img width="1033" alt="스크린샷 2021-07-21 오후 7 27 18" src="https://user-images.githubusercontent.com/52005780/126475014-49f25f0e-7211-4d41-8235-1743caf5aebf.png">
 
 
 
