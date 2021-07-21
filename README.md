@@ -64,3 +64,4 @@
 2. 나중에 안드로이드위해 JSON으로 받을 경로 나누기
 3. 개발용, 배포용 구분
 4. 비 정상적인 접근 방지
+5. vocabulary-laravel 폴더에서 php artisan serve 입력하면 서버 실행
