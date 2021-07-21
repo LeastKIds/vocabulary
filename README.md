@@ -28,22 +28,15 @@
 
 
 - ERDcloud : https://www.erdcloud.com/ (데이터베이스 설정 사이트)
-
 - 깃 허브 협업 방법
-
   - 맨 처음에 clone 으로 땡겨오기
-
   - 작업을 한 뒤에는 master 브랜치로 올리기
-
   - 그 다음부터는 작업 시작할 때 pull을 하고 작업하기
-
   - 커밋 할 땐 '이름 : 내용' 으로 한글로 작성하기
-
     - Ex) 김진홍 : 깃 커밋 이용 방법
+- 데이터베이스 설계
 
-    
-
-
+![image-20210721192808999](/Users/gimjinhong/Library/Application Support/typora-user-images/image-20210721192808999.png)
 
 
 
