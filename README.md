@@ -28,22 +28,15 @@
 
 
 - ERDcloud : https://www.erdcloud.com/ (데이터베이스 설정 사이트)
-
 - 깃 허브 협업 방법
-
   - 맨 처음에 clone 으로 땡겨오기
-
   - 작업을 한 뒤에는 master 브랜치로 올리기
-
   - 그 다음부터는 작업 시작할 때 pull을 하고 작업하기
-
   - 커밋 할 땐 '이름 : 내용' 으로 한글로 작성하기
-
     - Ex) 김진홍 : 깃 커밋 이용 방법
+- 데이터베이스 설계
 
-    
-
-
+<img width="1033" alt="스크린샷 2021-07-21 오후 7 27 18" src="https://user-images.githubusercontent.com/52005780/126475014-49f25f0e-7211-4d41-8235-1743caf5aebf.png">
 
 
 
@@ -54,6 +47,7 @@
 1. 레이아웃 만들기
 2. 오류 처리 구상
 3. 비 정상적인 접근 방지
+4. vocabulary-vue 폴더에서 npm run serve 입력하면 서버 실행
 
 ## 백엔드 
 
@@ -63,3 +57,4 @@
 2. 나중에 안드로이드위해 JSON으로 받을 경로 나누기
 3. 개발용, 배포용 구분
 4. 비 정상적인 접근 방지
+5. vocabulary-laravel 폴더에서 php artisan serve 입력하면 서버 실행
