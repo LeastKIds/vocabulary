@@ -75,3 +75,32 @@
 3. 개발용, 배포용 구분
 4. 비 정상적인 접근 방지
 5. vocabulary-laravel 폴더에서 php artisan serve 입력하면 서버 실행
+
+### axios 
+
+- json 파싱
+  - ```
+    public function get(Request $request) {
+    
+            $data1['name'] = 'Kim';
+            $data1['age'] = 25;
+            $data2['test'] = 'test';
+            $data2['testQ'] = 'Testq';
+            $data['user'] = $data1;
+            $data['test'] = $data2;
+            return $data;
+        }
+    ```
+
+  - ```
+    {
+        "user": {
+            "name": "Kim",
+            "age": 25
+        },
+        "test": {
+            "test": "test",
+            "testQ": "Testq"
+        }
+    }
+    ```
