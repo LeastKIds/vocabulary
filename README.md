@@ -28,6 +28,7 @@
 
 
 - ERDcloud : https://www.erdcloud.com/ (데이터베이스 설정 사이트)
+  - https://www.erdcloud.com/d/6AGdtfXu8XnAFb6Sk
 - 깃 허브 협업 방법
   - 최초로 받기
     - 원하는 폴더 이동
