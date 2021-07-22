@@ -29,20 +29,27 @@
 
 - ERDcloud : https://www.erdcloud.com/ (데이터베이스 설정 사이트)
 - 깃 허브 협업 방법
-  - 맨 처음에 clone 으로 땡겨오기
-  
-  - 맨 처음 실행 시 composer install 입력해서 컴포저 누락 및 경로 다시 설정해주기.
-  
-  - 작업을 한 뒤에는 master 브랜치로 올리기
-  
-  - 그 다음부터는 작업 시작할 때 pull을 하고 작업하기
-  
-  - 커밋 할 땐 '이름 : 내용' 으로 한글로 작성하기
-    - Ex) 김진홍 : 깃 커밋 이용 방법
-    
-  - 받고 나서 데이터베이스 변경 사항이 있을 수 있으니 php artisan migrate 한번 씩 해 주기.
-  
-    
+  - 최초로 받기
+    - 원하는 폴더 이동
+    - git clone (주소)
+    - Laravel 폴더로 이동해서 .env.example 파일을 복사본을 만들어서 .env 파일로 만듬
+    - .env 파일 안에서 기초 설정 하기
+    - laravel 폴더에서 composer install 실행
+    - laravel 폴더에서 nom Install 실행
+    - laravel 폴더에서 php artisan key:generate 실행
+    - laravel 폴더에서 php atiran migrate 실행
+    - 그 다음은 php 서버를 키든가 하면 됨
+    - Vue 폴더에서도 npm install 실행
+    - 그 뒤로 뷰 서버를 열든가 하면 됨
+  - 두 번째
+    - 작업 하기 전에 git pull
+    - Laravel 폴더에서 php artisan migrate 실행
+    - laravel 폴더에서 npm install 실행
+    - vue 폴더에서 npm install 실행
+    - 작업을 하고 난 뒤 마스터 브랜치로 커밋하기
+    - 커밋은 '이름: 내용'으로 한글로 작성하기
+      - ex) 김진홍: README 파일 수정
+    - git push origin master 로 푸시하기
 - 데이터베이스 설계
 
 <img width="1033" alt="스크린샷 2021-07-21 오후 7 27 18" src="https://user-images.githubusercontent.com/52005780/126475014-49f25f0e-7211-4d41-8235-1743caf5aebf.png">
