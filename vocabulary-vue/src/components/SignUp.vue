@@ -1,31 +1,26 @@
 <template>
-  <div class="login">
-    <h3>Login</h3>
+  <div class="sign-up">
+    <p>회원가입</p>
   <input type="text" placeholder="email"> <br>
   <input type="password" placeholder="password"> <br>
-  <button v-on:click="login"> 로그인 </button>
-  <p>만일 계정이 없다면,<router-link to="/signup"> 회원가입</router-link>을 먼저 진행 해주세요~</p>
+  <button> 가입하기 </button>
+  <span>또는 <router-link to="/login">로그인</router-link>으로 돌아가기</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'login',
+  name: 'signUp',
   data(){
     return{
-
     }
   },
-  methods : {
-    login(){
-    this.$router.replace('hello')
-    }
-  }
+  methods : {}
 }
 </script>
 
 <style scoped>
-  .login{
+  .signUp {
     margin-top: 40px;
   }
   input {
@@ -42,8 +37,9 @@ export default {
     margin-top:40px;
     font-size: 15px;
   }
-  p a {
-    text-decoration: underline;
-    cursor: pointer;
+  span {
+    display: block;
+    margin-top: 20px;
+    font-size: 15px;
   }
 </style>
