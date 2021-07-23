@@ -42,7 +42,7 @@
     - 그 다음은 php 서버를 키든가 하면 됨
     - Vue 폴더에서도 npm install 실행
     - 그 뒤로 뷰 서버를 열든가 하면 됨
-  - 두 번째
+  - 두 번째 부터
     - 작업 하기 전에 git pull
     - Laravel 폴더에서 php artisan migrate 실행
     - laravel 폴더에서 npm install 실행
@@ -66,6 +66,74 @@
 3. 비 정상적인 접근 방지
 4. vocabulary-vue 폴더에서 npm run serve 입력하면 서버 실행
 
+
+
+### axios
+
+- ```bash
+  npm install axios
+  ```
+
+- ```js
+  <div id="app">
+    <button v-on:click="fetchData">get data</button>
+  </div>
+  
+  // get
+  methods: {
+      fetchData: function() {
+        axios.get('주소')
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+    }
+  ```
+
+- ```js
+  // post
+  axios.post('주소', {title: "vue.js는 조으다."}) 
+  .then(res => { console.log(res.data) })
+  ```
+
+- ```js
+  // patch
+  axios.patch('주소', {title: "vue.js는 조으다."}) 
+    .then(res => { console.log(res.data) })
+  
+  
+  ```
+
+- ```js
+  // delete
+  axios.delete('주소')
+    .then(res => { console.log(res.data) })
+  
+  
+  ```
+
+- ```js
+  <form method="post" enctype="multipart/form-data" action="/contant/124/photo"> 
+    <input type="file" name="photo" ref="photoimage"> 
+      <input type="submit"> 
+        </form>
+  
+  // form/data (사진이나 첨부파일)
+  var data = new FormData(); 
+  var file = this.$refs.photoimage.files[0]; 
+  data.append('photo', file); 
+  axios.post('/api/data/' + this.no + '/photo', data) 
+    .then((res) => { this.result = res.data; }) 
+    .catch((ex) => { console.log('사진업로드 실패', ex); });
+  
+  
+  ```
+
+- 
+
 ## 백엔드 
 
 <hr>
@@ -75,6 +143,14 @@
 3. 개발용, 배포용 구분
 4. 비 정상적인 접근 방지
 5. vocabulary-laravel 폴더에서 php artisan serve 입력하면 서버 실행
+
+
+
+- 구현 기능
+  - 로그인
+  - 페이지 이동 시 로그인 체크
+  - 단어장 나열
+  - 단어장 속 단어 나열
 
 ### axios 
 
@@ -92,7 +168,7 @@
         }
     ```
 
-  - ```
+  - ```Laravel
     {
         "user": {
             "name": "Kim",
