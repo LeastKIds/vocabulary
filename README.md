@@ -64,7 +64,13 @@
 1. 레이아웃 만들기
 2. 오류 처리 구상
 3. 비 정상적인 접근 방지
-4. vocabulary-vue 폴더에서 npm run serve 입력하면 서버 실행
+4. vocabulary-vue 폴더에서 npm run dev 입력하면 서버 실행
+
+
+
+- 로그인화면 : /login
+  회원가입화면:/signup
+  메인화면:/hello
 
 
 
@@ -155,7 +161,7 @@
 ### axios 
 
 - json 파싱
-  - ```
+  - ```php
     public function get(Request $request) {
     
             $data1['name'] = 'Kim';
@@ -168,7 +174,7 @@
         }
     ```
 
-  - ```Laravel
+  - ```php
     {
         "user": {
             "name": "Kim",
@@ -180,3 +186,4 @@
         }
     }
     ```
+
