@@ -20,8 +20,20 @@ class VocaContorller extends Controller
 //    단어장 만들기
     public function store(Request $request) {
 
-        $title = $request-> title;
-        $user_id = $request-> user_id;
+        $data = json_decode($request, true);
+
+        $title = $data['title'];
+        $user_id = $data['user_id'];
+        $public = $data['public'];
+
+        $request -> validate([
+            'title' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        $post = newPost();
+//        $post ->
+
 
 //        return response() -> json(array('test' => $test));
     }
