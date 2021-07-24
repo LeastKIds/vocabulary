@@ -11,28 +11,36 @@ class VocaContorller extends Controller
     public function show()
     {
 
-        $posts = Vocabulary::where('public', 1);
+        $voca = Vocabulary::where('public', 1) -> get();
 
-        return response()->json(array('data' => $posts));
+
+        return $voca;
 
     }
 
 //    단어장 만들기
     public function store(Request $request) {
 
-        $data = json_decode($request, true);
+//        $data = json_decode($request, true);
 
-        $title = $data['title'];
-        $user_id = $data['user_id'];
-        $public = $data['public'];
+        $title = $request['title'];
+        $user_id = $request['user_id'];
+        $public = $request['public'];
 
         $request -> validate([
             'title' => 'required',
             'user_id' => 'required',
+            'public' => 'required'
         ]);
 
-        $post = newPost();
-//        $post ->
+        $voca = new Vocabulary();
+        $voca -> title = $title;
+        $voca -> user_id = $user_id;
+        $voca -> public = $public;
+
+        $voca -> save();
+
+        return response('success');
 
 
 //        return response() -> json(array('test' => $test));
