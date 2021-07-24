@@ -53,9 +53,15 @@
     - git push origin master 로 푸시하기
 - 데이터베이스 설계
 
-<img width="1033" alt="스크린샷 2021-07-21 오후 7 27 18" src="https://user-images.githubusercontent.com/52005780/126475014-49f25f0e-7211-4d41-8235-1743caf5aebf.png">
+![image](https://user-images.githubusercontent.com/52005780/126865081-cf3064ce-6f1b-473b-ad4b-e94fad5229e0.png)
 
 
+
+
+
+### 주의 사항
+
+- .env.exemple 파일 지우지 말것. 사용하려면 복사본을 만든뒤 복사본을 이용할 것.
 
 ## 프론트 엔드
 
