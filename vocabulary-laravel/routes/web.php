@@ -28,6 +28,6 @@ require __DIR__.'/auth.php';
 Route::prefix('voca') -> group(function () {
     Route::prefix('vocabulary') -> group(function () {
         Route::get('show', [VocaContorller::class, 'show']);
-        Route::post('create', [VocaContorller::class, 'create']);
+        Route::post('store', [VocaContorller::class, 'store']);
     });
 });
