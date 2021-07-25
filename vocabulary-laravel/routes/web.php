@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VocaContorller;
+use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +27,20 @@ require __DIR__.'/auth.php';
 
 
 Route::prefix('voca') -> group(function () {
+
     Route::prefix('vocabulary') -> group(function () {
         Route::get('show', [VocaContorller::class, 'show']);
         Route::post('store', [VocaContorller::class, 'store']);
         Route::delete('/delete/{id}', [VocaContorller::class, 'delete']);
         Route::put('/edit/{id}',[VocaContorller::class, 'edit']);
     });
+
+    Route::prefix('word') -> group(function () {
+        Route::get('show',[WordController::class,'show']);
+        Route::post('store',[WordController::class,'store']);
+        Route::delete('delete/{id}',[WordController::class,'delete']);
+        Route::put('/edit/{id}',[WordController::class,'edit']);
+    });
 });
+
+

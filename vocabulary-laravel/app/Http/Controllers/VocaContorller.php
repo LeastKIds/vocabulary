@@ -63,8 +63,6 @@ class VocaContorller extends Controller
 
         $voca = Vocabulary::findOrFail($id);
 
-
-
         $title = $request -> title;
         $public = $request -> public;
 
@@ -74,7 +72,5 @@ class VocaContorller extends Controller
         $voca -> save();
 
         return response('vocabulary edit');
-
-
     }
 }
