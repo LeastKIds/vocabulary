@@ -30,6 +30,6 @@ Route::prefix('voca') -> group(function () {
         Route::get('show', [VocaContorller::class, 'show']);
         Route::post('store', [VocaContorller::class, 'store']);
         Route::delete('/delete/{id}', [VocaContorller::class, 'delete']);
-        Route::put('/edit',[VocaContext::class,'eidt']);
+        Route::put('/edit/{id}',[VocaContorller::class, 'edit']);
     });
 });

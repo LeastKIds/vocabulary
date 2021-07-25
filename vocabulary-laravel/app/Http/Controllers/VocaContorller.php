@@ -53,7 +53,28 @@ class VocaContorller extends Controller
         return response('vocabulary delete');
     }
 
-    public function edit($id) {
+    public function edit(Request $request, $id) {
+
+
+        $request -> validate([
+            'title' => 'required',
+            'public' => 'required'
+        ]);
+
+        $voca = Vocabulary::findOrFail($id);
+
+
+
+        $title = $request -> title;
+        $public = $request -> public;
+
+        $voca -> title = $title;
+        $voca -> public = $public;
+
+        $voca -> save();
+
+        return response('vocabulary edit');
+
 
     }
 }
