@@ -11,7 +11,7 @@ class VocaContorller extends Controller
     public function show()
     {
 
-        $voca = Vocabulary::where('public', 1) -> get();
+        $voca = Vocabulary::where('public', 1) -> orderBy('created_at','DESC') -> get();
 
 
         return $voca;
@@ -40,9 +40,20 @@ class VocaContorller extends Controller
 
         $voca -> save();
 
-        return response('success');
+        return response('vocabulary created');
 
 
 //        return response() -> json(array('test' => $test));
+    }
+
+    public function delete($id) {
+        $post = Vocabulary::find($id);
+        $post -> delete();
+
+        return response('vocabulary delete');
+    }
+
+    public function edit($id) {
+
     }
 }

@@ -29,5 +29,7 @@ Route::prefix('voca') -> group(function () {
     Route::prefix('vocabulary') -> group(function () {
         Route::get('show', [VocaContorller::class, 'show']);
         Route::post('store', [VocaContorller::class, 'store']);
+        Route::delete('/delete/{id}', [VocaContorller::class, 'delete']);
+        Route::put('/edit',[VocaContext::class,'eidt']);
     });
 });

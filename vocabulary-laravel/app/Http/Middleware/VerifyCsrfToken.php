@@ -16,5 +16,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'http://localhost:8000/voca/vocabulary/store',
+        'http://localhost:8000/voca/vocabulary/delete/*'
     ];
 }
