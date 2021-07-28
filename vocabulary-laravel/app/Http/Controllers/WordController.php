@@ -80,8 +80,13 @@ class WordController extends Controller
     public function important($id) {
         $word = Word::findOrFail($id);
 
-//        if($word -> important === )
+        if($word -> important === 0)
+            $word -> important = 1;
+        else
+            $word -> important = 0;
 
-        return $word -> important;
+        $word -> save();
+
+        return response('success important');
     }
 }
