@@ -76,4 +76,12 @@ class WordController extends Controller
 
         return response('success eidt');
     }
+
+    public function important($id) {
+        $word = Word::findOrFail($id);
+
+//        if($word -> important === )
+
+        return $word -> important;
+    }
 }

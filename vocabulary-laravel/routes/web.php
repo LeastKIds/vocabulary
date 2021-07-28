@@ -40,6 +40,7 @@ Route::prefix('voca') -> group(function () {
         Route::post('store',[WordController::class,'store']);
         Route::delete('delete/{id}',[WordController::class,'delete']);
         Route::put('/edit/{id}',[WordController::class,'edit']);
+        Route::put('important/{id}',[WordController::class,'important']);
     });
 });
 
