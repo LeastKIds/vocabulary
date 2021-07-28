@@ -193,3 +193,85 @@
     }
     ```
 
+
+
+
+
+### 단어장 CRUD
+
+- create
+
+  - ``` json
+    // http://localhost:8000/voca/vocabulary/store
+    // 위쪽 주소로 post
+    {
+    	"title" : "**단어장 제목**",
+    	"user_id" : "**단어장 만드는 유저 아이디**",
+    	"public" : "**공개할 껀지. 하면 1, 안하면 0**"
+    }
+    // 위의 양식으로 ** ** 부분만 바꿔서 제이슨으로 서버로 전송
+    // 성공했을 시 vocabulary created 라고 적힘
+    
+    ```
+
+- read
+
+  - ```json
+    // http://localhost:8000/voca/vocabulary/show
+    // 위쪽 주소로 get
+    
+    [
+        {
+            "id": 3,
+            "created_at": "2021-07-25T02:04:46.000000Z",
+            "updated_at": "2021-07-25T02:04:46.000000Z",
+            "public": 1,
+            "user_id": 1,
+            "title": "리스폰 확인용"
+        },
+        {
+            "id": 2,
+            "created_at": "2021-07-25T02:04:42.000000Z",
+            "updated_at": "2021-07-25T02:04:42.000000Z",
+            "public": 1,
+            "user_id": 1,
+            "title": "리스폰 확인용"
+        },
+        {
+            "id": 1,
+            "created_at": "2021-07-24T09:51:29.000000Z",
+            "updated_at": "2021-07-24T09:51:29.000000Z",
+            "public": 1,
+            "user_id": 1,
+            "title": "testㅇㅣㅂ니다"
+        }
+    ]
+    
+    // 위의 양식처럼 내용이 옴
+    ```
+
+- update
+
+  - ```json
+    // http://localhost:8000/voca/vocabulary/edit/{id}
+    // 위 주소로 put으로 보냄
+    {
+    	"title" : "**단어장 제목**",
+    	"public" : "**공개할 껀지. 하면 1, 안하면 0**"
+    }
+    // 위의 양식대로 json으로 보냄
+    // 성공시 vocabulary edit 문구가 옴
+    
+    ```
+
+- delete
+
+  - ```json
+    // http://localhost:8000/voca/vocabulary/delete/{id}
+    // 위 주로소 delete로 보냄
+    // 양식은 필요 없음.
+    // 성공시 vocabulary delete 문구가 옴
+    ```
+
+
+
