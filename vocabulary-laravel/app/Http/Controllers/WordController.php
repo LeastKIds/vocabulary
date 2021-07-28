@@ -10,7 +10,10 @@ class WordController extends Controller
 {
     //
 
-    public function show() {
+    public function show($vocabulary_id) {
+        $words = Word::where('vocabulary_id', $vocabulary_id) -> get();
+
+        return $words;
 
     }
 
@@ -50,11 +53,27 @@ class WordController extends Controller
         return response('save words');
     }
 
-    public function delete() {
+    public function delete($id) {
+        $word = Word::find($id);
+        $word -> delete();
 
+        return response('success delete');
     }
 
-    public function edit() {
+    public function edit(Request $request, $id) {
 
+        $word = Word::findOrFail($id);
+
+        $chinese_character = $request -> chinese_character;
+        $hiragana = $request-> hiragana;
+        $korean = $request-> korean;
+
+        $word -> chinese_character = $chinese_character;
+        $word -> hiragana = $hiragana;
+        $word -> korean = $korean;
+
+        $word -> save();
+
+        return response('success eidt');
     }
 }

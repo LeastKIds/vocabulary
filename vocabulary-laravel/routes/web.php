@@ -36,7 +36,7 @@ Route::prefix('voca') -> group(function () {
     });
 
     Route::prefix('word') -> group(function () {
-        Route::get('show',[WordController::class,'show']);
+        Route::get('show/{$vocabulary_id}',[WordController::class,'show']);
         Route::post('store',[WordController::class,'store']);
         Route::delete('delete/{id}',[WordController::class,'delete']);
         Route::put('/edit/{id}',[WordController::class,'edit']);

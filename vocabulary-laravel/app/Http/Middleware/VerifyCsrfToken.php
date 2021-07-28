@@ -19,5 +19,8 @@ class VerifyCsrfToken extends Middleware
         'http://localhost:8000/voca/vocabulary/delete/*',
         'http://localhost:8000/voca/vocabulary/edit/*',
         'http://localhost:8000/voca/word/store',
+        'http://localhost:8000/voca/word/delete/*',
+        'http://localhost:8000/voca/word/eidt/*'
+
     ];
 }
