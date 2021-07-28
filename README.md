@@ -275,3 +275,105 @@
 
 
 
+### 단어 CRUD
+
+- create
+
+  - ```json
+    // http://localhost:8000/voca/word/store
+    // 위 주소로 post로 보내기
+    [
+        {
+            "chinese_character": "**한자**",
+            "hiragana": "**히라가나**",
+            "korean": "**한글**",
+            "user_id": **유저 아이디**,
+            "vocabulary_id": **단어장 아이디**
+        },
+        {
+            "chinese_character": "**한자**",
+            "hiragana": "**히라가나**",
+            "korean": "**한글**",
+            "user_id": **유저 아이디**,
+            "vocabulary_id": **단어장 아이디**
+        }
+     ]
+    
+    // 위의 형식으로 JsonArray 형식으로 보냄
+    // 성공시 save words가 옴
+    
+    ```
+    
+  
+- read
+
+  - ```json
+    // http://localhost:8000/voca/word/show/{vocabulary_id}
+    // 위 주소로 get로 보내기
+    [
+        {
+            "id": 2,
+            "created_at": "2021-07-25T03:02:57.000000Z",
+            "updated_at": "2021-07-28T03:22:01.000000Z",
+            "chinese_character": "漢字1testetsetsetets",
+            "hiragana": "かんじ",
+            "korean": "한자",
+            "important": 1,
+            "user_id": 1,
+            "vocabulary_id": 2
+        },
+        {
+            "id": 3,
+            "created_at": "2021-07-26T13:10:05.000000Z",
+            "updated_at": "2021-07-26T13:10:05.000000Z",
+            "chinese_character": "漢字1",
+            "hiragana": "かんじ",
+            "korean": "한자",
+            "important": 0,
+            "user_id": 1,
+            "vocabulary_id": 2
+        }
+     ]
+    
+    // 위의 양식으로 response가 옴
+    
+    ```
+
+- update
+
+  - ```json
+    // http://localhost:8000/voca/word/edit/{id}
+    // 위의 주소로 put으로 보냄
+    {
+            "chinese_character": "**한자**",
+            "hiragana": "**히라가나**",
+            "korean": "**한글**"
+    }
+    
+    // 위의 양식으로 보냄
+    // 성공시 success eidt로 옴
+    
+    ```
+
+- delete
+
+  - ```json
+    // http://localhost:8000/voca/word/delete/{id}
+    // 위의 주소로 delete로 보냄
+    // 양식은 필요 없음
+    // 성공시 success delete가 옴
+    
+    
+    ```
+
+- important
+
+  - ```json
+    // http://localhost:8000/voca/word/important/{id}
+    // 위의 주소로 put으로 보냄
+    // 양식은 필요 없음
+    // 중요도 표시가 안 된건 중요도 표시가 되고,
+    // 중요도 표시가 된 건 중요도 표시가 안 되도록 바뀜.
+    // 성공시 success important가 옴
+    ```
+

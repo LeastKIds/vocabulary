@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Word;
 use Illuminate\Http\Request;
-use Validator;
 
 class WordController extends Controller
 {

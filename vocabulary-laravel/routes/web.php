@@ -36,11 +36,11 @@ Route::prefix('voca') -> group(function () {
     });
 
     Route::prefix('word') -> group(function () {
-        Route::get('show/{$vocabulary_id}',[WordController::class,'show']);
-        Route::post('store',[WordController::class,'store']);
-        Route::delete('delete/{id}',[WordController::class,'delete']);
+        Route::get('/show/{vocabulary_id}',[WordController::class,'show']);
+        Route::post('/store',[WordController::class,'store']);
+        Route::delete('/delete/{id}',[WordController::class,'delete']);
         Route::put('/edit/{id}',[WordController::class,'edit']);
-        Route::put('important/{id}',[WordController::class,'important']);
+        Route::put('/important/{id}',[WordController::class,'important']);
     });
 });
 
