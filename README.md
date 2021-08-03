@@ -57,6 +57,20 @@
 
 
 
+### 진행사항
+
+![KakaoTalk_Photo_2021-08-03-13-52-17](https://user-images.githubusercontent.com/52005780/127959859-d1036714-b0fb-4756-a790-05a9dfbb47ab.jpeg)
+
+![KakaoTalk_Photo_2021-08-03-13-51-56](https://user-images.githubusercontent.com/52005780/127959790-b4b3d09c-7bb0-4d3f-8020-41b4aa9b9d73.jpeg)
+
+
+
+
+
+
+
+
+
 
 
 ### 주의 사항
