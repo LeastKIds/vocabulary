@@ -39,16 +39,30 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $profile = new User();
+        $profile -> name = $request['name'];
+        $profile -> email = $request['email'];
+        $profile -> password = Hash::make($request->password);
+
+        // $profile -> save();
+
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $profile->name,
+            'email' => $profile->email,
+            'password' => $profile->password,
         ]);
+
+        // dd($profile);
+
+        $json = response()->json($profile);
+
+        // return $json;
 
         event(new Registered($user));
 
         Auth::login($user);
-
+        
         return redirect(RouteServiceProvider::HOME);
     }
+
 }
