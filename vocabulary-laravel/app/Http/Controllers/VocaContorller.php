@@ -40,7 +40,9 @@ class VocaContorller extends Controller
 
         $voca -> save();
 
-        return response('vocabulary created');
+
+
+        return response() -> json($voca);
 
 
 //        return response() -> json(array('test' => $test));
