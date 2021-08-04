@@ -57,6 +57,20 @@
 
 
 
+### 진행사항
+
+![KakaoTalk_Photo_2021-08-03-13-52-17](https://user-images.githubusercontent.com/52005780/127959859-d1036714-b0fb-4756-a790-05a9dfbb47ab.jpeg)
+
+![KakaoTalk_Photo_2021-08-03-13-51-56](https://user-images.githubusercontent.com/52005780/127959790-b4b3d09c-7bb0-4d3f-8020-41b4aa9b9d73.jpeg)
+
+
+
+
+
+
+
+
+
 
 
 ### 주의 사항
@@ -377,3 +391,85 @@
     // 성공시 success important가 옴
     ```
 
+
+
+### csrf오류 (419 오류)
+
+ 라라벨에서 포스트를 받을 때에는 csrf토큰이 필요하다. 이 토큰의 기능은 승인 되지 않은 코드가 들어오는 것을 막아준다. 우리는 블레이드템플릿에 form 태그 안에 @csrf 기능을 사용해 해결하곤 했다.
+
+```html
+// 예시
+<form method="POST" action="/profile">
+    @csrf 
+    ...
+</form>
+```
+
+포스트 맨에서 보낼 경우 토큰을 넣어 주어야 하지만 아직 넣어주는 방법을 모르므로 라라벨에서 잠시 이 기능을 꺼 놓아야 한다.
+
+1. 라라벨 프로젝트폴더/app/Http/Middleware/VerifyCsrfToken.php로 들어간 뒤
+
+```php
+protected $except = [
+        //
+        'http://localhost:8000/voca/vocabulary/store',
+        'http://localhost:8000/voca/vocabulary/delete/*',
+        'http://localhost:8000/voca/vocabulary/edit/*',
+        'http://localhost:8000/voca/word/store',
+        'http://localhost:8000/voca/word/delete/*',
+        'http://localhost:8000/voca/word/edit/*',
+        '*'
+
+    ];
+```
+
+2. 위와 같이 사용한다. 처음에는 일일이 적어주었지만 귀찮아서 *로 모든 요청에서 csrf를 무시해 버림
+
+
+
+### access to xmlhttprequest at " " from origin " " has been blocked by cors policy:No ...
+
+ vue에서 axios를 사용해 post로 보냈을 때, 라라벨 서버에서 받지 못하고 위의 오류가 뜨는 경우가 있다. 데이터를 주고 받을 때에는 같은 주소에서만 가능하다. 즉 http://localhost:8000 까지의 앞 부분이 같을 때에만 데이터를 주고받을 수 있다. vue의 경우 http://localhost:8080이고 라라벨의 경우 http://localhost:8000이기에 생기는 오류다. 실제로 배포를 할 때에는 vue의 파일을 포장해서 라라벨 public 폴더에 다 넣고 라라벨 서버만 켜서 사용하기때문에 문제 될것이 없는 상황이다. 다만 개발 단계에서 따로 개발할 경우에는 이런 오류가 생긴다. 이 역시 외부에서 무분별하게 들어오는 코드를 막기 위한 것으로 개발할 때에 잠시 꺼놓아야 한다. 
+
+1. 라라벨 프로젝트 폴더 위치
+
+2. php artisan make:middleware CORS
+
+3. 라라벨 프로젝트폴더/app/Http/Middleware/CORS.php 안으로 들어감
+
+```php
+public function handle(Request $request, Closure $next)
+{
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Allow-Credentials: false');
+    return $next($request);
+}
+```
+
+4. 위와 같이 작성
+
+5. 라라벨 프로젝트폴더/app/Http/Kernel.php 들어감
+
+6. ```php
+   protected $routeMiddleware = [
+       'cors' => \App\Http\Middleware\CORS::class,
+       ...
+   ];
+   ```
+
+7. 위와 같이 작성
+
+8. web.php로 들어감
+
+9. ```php
+   Route::middleware(['cors'])->group(function(){
+       Route::get('/csrf_token', function(){
+           return csrf_token();
+       });
+   
+       // 여기에 라우터를 쓰면 됨
+   });
+   ```
+
+   
