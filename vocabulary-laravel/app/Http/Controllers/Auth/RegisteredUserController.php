@@ -54,15 +54,19 @@ class RegisteredUserController extends Controller
 
         // dd($profile);
 
-        $json = response()->json($profile);
+        // $json = response()->json($profile);
 
         // return $json;
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
         
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
+
+        return response("회원가입이 완료되었습니다.");
+
+        // return response($profile);
     }
 
 }

@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\VocaContorller;
 use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 
 /*
