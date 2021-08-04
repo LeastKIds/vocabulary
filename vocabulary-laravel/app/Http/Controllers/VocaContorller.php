@@ -73,4 +73,11 @@ class VocaContorller extends Controller
 
         return response('vocabulary edit');
     }
+
+    public function myVoca($id)
+    {
+        $voca = Vocabulary::where('user_id',$id) -> orderBy('created_at','DESC') -> get();
+
+        return $voca;
+    }
 }
