@@ -51,6 +51,10 @@ Route::middleware(['cors'])->group(function(){
             Route::put('/important/{id}',[WordController::class,'important']);
         });
     });
+
+
+
+
 });
 
 
