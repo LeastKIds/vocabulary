@@ -1,5 +1,7 @@
 <template>
   <div class="login">
+
+    <h1>나만의 단어장!</h1>
     <h3>Login</h3>
   <input type="text" placeholder="email"> <br>
   <input type="password" placeholder="password"> <br>
@@ -16,9 +18,15 @@ export default {
 
     }
   },
+  // methods : {
+  //   login(){
+  //   this.$router.replace('hello')
+  //   }
+  // }
+
   methods : {
     login(){
-    this.$router.replace('hello')
+    this.$router.replace('main')
     }
   }
 }
