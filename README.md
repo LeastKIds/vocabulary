@@ -36,9 +36,9 @@
     - Laravel 폴더로 이동해서 .env.example 파일을 복사본을 만들어서 .env 파일로 만듬
     - .env 파일 안에서 기초 설정 하기
     - laravel 폴더에서 composer install 실행
-    - laravel 폴더에서 nom Install 실행
+    - laravel 폴더에서 npm install 실행
     - laravel 폴더에서 php artisan key:generate 실행
-    - laravel 폴더에서 php atiran migrate 실행
+    - laravel 폴더에서 php artisan migrate 실행
     - 그 다음은 php 서버를 키든가 하면 됨
     - Vue 폴더에서도 npm install 실행
     - 그 뒤로 뷰 서버를 열든가 하면 됨
