@@ -1,21 +1,43 @@
 <template>
   <div class="sign-up">
     <p>회원가입</p>
-  <input type="text" placeholder="email"> <br>
-  <input type="password" placeholder="password"> <br>
-  <button> 가입하기 </button>
-  <span>또는 <router-link to="/login">로그인</router-link>으로 돌아가기</span>
+    <input type="text" placeholder="email" v-model="email"> <br>
+    <input type="password" placeholder="password"> <br>
+    <button v-on:click="signup"> 가입하기 </button>
+    <span>또는 <router-link to="/login">로그인</router-link>으로 돌아가기</span>
   </div>
 </template>
 
 <script>
+
+
 export default {
   name: 'signUp',
   data(){
     return{
+      email: '',
+      
+      password: '',
     }
   },
-  methods : {}
+  mounted() {
+    
+  },
+  methods : {
+      signup() {
+        axios.post('https://reqres.in/api/users', {
+          email:this.email,
+          name:"ppang"
+        })
+        .then(response => {
+          console.log(response.data)
+          
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
+  }
 }
 </script>
 

@@ -1,33 +1,43 @@
 <template>
   <div class="login">
-
-    <h1>나만의 단어장!</h1>
+    <v-row>
+      <h1>나만의 단어장!</h1>
+    </v-row>
+    
     <h3>Login</h3>
   <input type="text" placeholder="email"> <br>
   <input type="password" placeholder="password"> <br>
   <button v-on:click="login"> 로그인 </button>
-  <p>만일 계정이 없다면,<router-link to="/signup"> 회원가입</router-link>을 먼저 진행 해주세요~</p>
+  <p>만일 계정이 없다면,<router-link to="/signup"> 회원가입</router-link>을 먼저 진행 해주세요</p>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'login',
   data(){
     return{
-
+       users: []
     }
   },
-  // methods : {
-  //   login(){
-  //   this.$router.replace('hello')
-  //   }
-  // }
-
+  mounted() {
+    
+  },
   methods : {
-    login(){
-    this.$router.replace('main')
-    }
+    login() {
+      axios.get('/api/users')
+      .then(response=> {
+          console.log(response)
+          this.users = response.data
+
+          this.$router.replace('main')
+      })
+      .catch( err => {
+          console.log(err)
+      })
+    },
   }
 }
 </script>
