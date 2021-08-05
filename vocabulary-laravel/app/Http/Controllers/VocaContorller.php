@@ -78,6 +78,7 @@ class VocaContorller extends Controller
 
     public function myVoca($id)
     {
+
         $voca = Vocabulary::where('user_id',$id) -> orderBy('created_at','DESC') -> get();
 
         return $voca;

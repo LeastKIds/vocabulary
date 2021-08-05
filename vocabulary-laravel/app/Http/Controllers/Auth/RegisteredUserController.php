@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
         $profile -> email = $request['email'];
         $profile -> password = Hash::make($request->password);
 
-        // $profile -> save();
+//         $profile -> save();
 
         $user = User::create([
             'name' => $profile->name,
@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         // Auth::login($user);
-        
+
         // return redirect(RouteServiceProvider::HOME);
 
         return response("회원가입이 완료되었습니다.");
