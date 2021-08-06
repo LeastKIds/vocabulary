@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
+import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
 
@@ -10,9 +10,9 @@ export default new Router({
   mode:'history',
   routes: [
     {
-      path: '/singin',
-      name: 'singin',
-      component: SingIn
+      path: '/signin',
+      name: 'signin',
+      component: SignIn
     },
     {
       path:'/signup',
