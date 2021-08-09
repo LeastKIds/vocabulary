@@ -27,11 +27,22 @@ class VocaContorller extends Controller
         $user_id = $request['user_id'];
         $public = $request['public'];
 
-        $request -> validate([
+        if($title == null)
+            return response('title is null', 400);
+        else if($user_id == null)
+            return response('user_id is null', 400);
+        else if($public == null)
+            return response('public is null', 400);
+        $validator = $request -> validate([
             'title' => 'required',
             'user_id' => 'required',
             'public' => 'required'
         ]);
+
+        dd($request[]);
+//        if($validator -> fails()) {
+//            return $validator;
+//        }
 
         $voca = new Vocabulary();
         $voca -> title = $title;
@@ -57,7 +68,14 @@ class VocaContorller extends Controller
 
     public function edit(Request $request, $id) {
 
+        $title = $request['title'];
+        $public = $request['public'];
 
+        if($title == null)
+            return response('title is null', 400);
+        else if($public == null)
+            return response('public is null', 400);
+        
         $request -> validate([
             'title' => 'required',
             'public' => 'required'
