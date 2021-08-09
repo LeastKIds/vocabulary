@@ -84,11 +84,11 @@
 1. 레이아웃 만들기
 2. 오류 처리 구상
 3. 비 정상적인 접근 방지
-4. vocabulary-vue 폴더에서 npm run dev 입력하면 서버 실행
+4. vocabulary-vue 폴더에서 npm run serve 입력하면 서버 실행
 
 
 
-- 로그인화면 : /login
+- 로그인화면 : /signin
   회원가입화면:/signup
   메인화면:/hello
 
@@ -247,7 +247,7 @@
     // 다른 정보 필요 없음
     ```
 
-### 단어장 CRUD
+### 단어장 CRUD 그리고 여러가지
 
 - create
 
@@ -323,9 +323,88 @@
     // 성공시 vocabulary delete 문구가 옴
     ```
 
+- 내 단어장 보기
 
+  - ```php
+    // http://localhost:8000/voca/vocabulary/myVoca
+    // get
+    // 양식 필요 없음
+    [
+        {
+            "id": 10,
+            "created_at": "2021-08-09T10:02:32.000000Z",
+            "updated_at": "2021-08-09T10:02:32.000000Z",
+            "public": 1,
+            "user_id": 5,
+            "title": "ㄴㄹㄴㄹ"
+        },
+      ...
+    ]
+    // 위의 양식으로 단어장 배열이 옴
+    
+    ```
 
-### 단어 CRUD
+- 내 단어장 내에서 검색기능
+
+  - ```php
+    // http://localhost:8000/voca/vocabulary/mySearch/{search}
+    // get
+    // 양식 필요 없음
+    
+    [
+        {
+            "id": 10,
+            "created_at": "2021-08-09T10:02:32.000000Z",
+            "updated_at": "2021-08-09T10:02:32.000000Z",
+            "public": 1,
+            "user_id": 5,
+            "title": "ㄴㄹㄴㄹ"
+        },
+      ...
+    ]
+    // 위의 형식으로 단어장 배열이 옴
+    ```
+
+  - 공개 되어 있는 단어장 검색
+
+    - ```php
+      // http://localhost:8000/voca/vocabulary/search/{search}
+      // get
+      // 양식 필요 없음
+      [
+          {
+              "id": 6,
+              "created_at": "2021-08-04T04:41:04.000000Z",
+              "updated_at": "2021-08-04T04:41:04.000000Z",
+              "public": 1,
+              "user_id": 1,
+              "title": "12312313"
+          },
+          {
+              "id": 7,
+              "created_at": "2021-08-04T04:45:26.000000Z",
+              "updated_at": "2021-08-04T04:45:26.000000Z",
+              "public": 1,
+              "user_id": 1,
+              "title": "12312313"
+          },
+          {
+              "id": 11,
+              "created_at": "2021-08-09T10:23:37.000000Z",
+              "updated_at": "2021-08-09T10:23:37.000000Z",
+              "public": 1,
+              "user_id": 5,
+              "title": "123123"
+          },
+        ...
+      ]
+      
+      // 위의 양식으로 public이 1인 단어장 배열이 옴
+      ```
+
+    - 
+
+### 단어 CRUD 그리고 여러가지
 
 - create
 
@@ -427,7 +506,43 @@
     // 성공시 success important가 옴
     ```
 
+- 단어 섞기
 
+  - ```php
+    // http://localhost:8000/voca/word/shuffle/{id}
+    // get
+    // id는 유저 id가 아니라 단어장 id
+    // 양식 필요 없음
+    [
+        {
+            "id": 2,
+            "created_at": "2021-07-25T03:02:57.000000Z",
+            "updated_at": "2021-07-28T03:22:01.000000Z",
+            "chinese_character": "漢字1testetsetsetets",
+            "hiragana": "かんじ",
+            "korean": "한자",
+            "important": 1,
+            "user_id": 1,
+            "vocabulary_id": 2
+        },
+        {
+            "id": 3,
+            "created_at": "2021-07-26T13:10:05.000000Z",
+            "updated_at": "2021-07-26T13:10:05.000000Z",
+            "chinese_character": "漢字1",
+            "hiragana": "かんじ",
+            "korean": "한자",
+            "important": 0,
+            "user_id": 1,
+            "vocabulary_id": 2
+        },
+      ...
+     ]
+    // 위의 양식으로 단어 배열이 옴.
+    // 실행 시킬 때마다 섞임
+    ```
+
+  - 
 
 ### csrf오류 (419 오류)
 

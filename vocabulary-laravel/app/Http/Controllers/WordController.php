@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Word;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class WordController extends Controller
@@ -104,7 +105,7 @@ class WordController extends Controller
     }
 
     public function shuffle($id) {
-        $word = Word::where('vocabulary_id',$id) -> get();
+        $word = Word::where('user_id', auth()->user()['id']) -> where('vocabulary_id',$id) -> get();
         $shuffled = $word -> shuffle();
 
         return $shuffled;
