@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vocabulary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VocaContorller extends Controller
 {
@@ -105,4 +106,11 @@ class VocaContorller extends Controller
 
         return $voca;
     }
+
+    public function mySearch($search) {
+        $voca = Vocabulary::where('user_id', auth()->user()['id']) -> where('title', 'like', '%'.$search.'%') -> get();
+        
+        return $voca;
+    }
+
 }

@@ -100,9 +100,6 @@ class WordController extends Controller
 
         $word -> save();
 
-
-
-
         return response('check word');
     }
 }
