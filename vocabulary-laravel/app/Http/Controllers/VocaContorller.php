@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vocabulary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class VocaContorller extends Controller
 {
@@ -26,28 +27,27 @@ class VocaContorller extends Controller
 //    단어장 만들기
     public function store(Request $request) {
 
-//        $data = json_decode($request, true);
 
         $title = $request['title'];
         $user_id = auth() -> user()['id'];
         $public = $request['public'];
 
-        if($title == null)
-            return response('title is null', 400);
-        else if($user_id == null)
-            return response('user_id is null', 400);
-        else if($public == null)
-            return response('public is null', 400);
 
-//        $validator = $request -> validate([
-//            'title' => 'required',
-//            'user_id' => 'required',
-//            'public' => 'required'
-//        ]);
+        $validator = Validator::make(
+            array(
+                'title' => $title,
+                'public' => $public,
+            ),
+            array(
+                'title' => 'required',
+                'public' => 'required'
+            )
+        );
 
-//        if($validator -> fails()) {
-//            return $validator;
-//        }
+        if($validator->fails()) {
+            $message = $validator->messages();
+            return response($message,400);
+        }
 
         $voca = new Vocabulary();
         $voca -> title = $title;
@@ -76,15 +76,22 @@ class VocaContorller extends Controller
         $title = $request['title'];
         $public = $request['public'];
 
-        if($title == null)
-            return response('title is null', 400);
-        else if($public == null)
-            return response('public is null', 400);
 
-        $request -> validate([
-            'title' => 'required',
-            'public' => 'required'
-        ]);
+        $validator = Validator::make(
+            array(
+                'title' => $title,
+                'public' => $public
+            ),
+            array(
+                'title' => 'required',
+                'public' => 'required'
+            )
+        );
+
+        if($validator->fails()) {
+            $message = $validator->messages();
+            return response($message,400);
+        }
 
         $voca = Vocabulary::findOrFail($id);
 

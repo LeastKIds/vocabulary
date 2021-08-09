@@ -27,30 +27,48 @@ class WordController extends Controller
 
         $user_id = $request['user_id'];
         $vocabulary_id = $request['vocabulary_id'];
-        if($user_id == null)
-            return response('user_id is null', 400);
-        else if($vocabulary_id == null)
-            return response('vocabulary_id is null', 400);
+
+        $validator = Validator::make(
+            array(
+                'user_id' => $user_id,
+                'vocabulary_id' => $vocabulary_id
+            ),
+            array(
+                'user_id' => 'required',
+                'vocabulary_id' => 'required'
+            )
+        );
+
+        if($validator->fails()) {
+            $message = $validator->messages();
+            return response($message,400);
+        }
 
         $data = $request['word'];
 
-        for($i=0; $i < count($data); $i += 1)
+        foreach($data as $w)
         {
+            $chinese_character = $w['chinese_character'];
+            $hiragana = $w['hiragana'];
+            $korean = $w['korean'];
 
-            $validation = $data[$i];
+            $validator = Validator::make(
+                array(
+                    'chinese_character' => $chinese_character,
+                    'hiragana' => $hiragana,
+                    'korean' => $korean
+                ),
+                array(
+                    'chinese_character' => 'required',
+                    'hiragana' => 'required',
+                    'korean' => 'required'
+                )
+            );
 
-
-            $words = $data[$i];
-            $chinese_character = $words['chinese_character'];
-            $hiragana = $words['hiragana'];
-            $korean = $words['korean'];
-
-            if($chinese_character == null )
-                return response('chinese_character is null', 400);
-            else if($hiragana == null)
-                return response('hiragana is null', 400);
-            else if($korean == null)
-                return response('korean is null', 400);
+            if($validator->fails()) {
+                $message = $validator->messages();
+                return response($message,400);
+            }
 
 
             $word = new Word;
