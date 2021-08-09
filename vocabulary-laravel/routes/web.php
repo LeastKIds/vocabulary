@@ -51,6 +51,7 @@ Route::middleware(['cors'])->group(function(){
             Route::delete('/delete/{id}',[WordController::class,'delete']);
             Route::put('/edit/{id}',[WordController::class,'edit']);
             Route::put('/important/{id}',[WordController::class,'important']);
+            Route::get('/shuffle/{id}', [WordController::class,'shuffle']);
         });
     });
 

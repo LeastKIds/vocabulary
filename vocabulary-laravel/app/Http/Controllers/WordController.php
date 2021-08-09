@@ -102,4 +102,11 @@ class WordController extends Controller
 
         return response('check word');
     }
+
+    public function shuffle($id) {
+        $word = Word::where('vocabulary_id',$id) -> get();
+        $shuffled = $word -> shuffle();
+
+        return $shuffled;
+    }
 }
