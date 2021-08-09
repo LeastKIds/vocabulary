@@ -28,7 +28,7 @@ class VocaContorller extends Controller
 //        $data = json_decode($request, true);
 
         $title = $request['title'];
-        $user_id = $request['user_id'];
+        $user_id = auth() -> user()['id'];
         $public = $request['public'];
 
         if($title == null)
@@ -38,13 +38,12 @@ class VocaContorller extends Controller
         else if($public == null)
             return response('public is null', 400);
 
-        $validator = $request -> validate([
-            'title' => 'required',
-            'user_id' => 'required',
-            'public' => 'required'
-        ]);
+//        $validator = $request -> validate([
+//            'title' => 'required',
+//            'user_id' => 'required',
+//            'public' => 'required'
+//        ]);
 
-        dd($request[]);
 //        if($validator -> fails()) {
 //            return $validator;
 //        }
@@ -99,9 +98,9 @@ class VocaContorller extends Controller
         return response('vocabulary edit');
     }
 
-    public function myVoca($id)
+    public function myVoca()
     {
-
+        $id=auth()->user()['id'];
         $voca = Vocabulary::where('user_id',$id) -> orderBy('created_at','DESC') -> get();
 
         return $voca;

@@ -10,6 +10,10 @@ class WordController extends Controller
 {
     //
 
+    public function __construct() {
+        $this -> middleware(['auth']);
+    }
+
     public function show($vocabulary_id) {
         $words = Word::where('vocabulary_id', $vocabulary_id) -> get();
 
