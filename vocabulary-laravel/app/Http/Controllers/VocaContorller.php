@@ -109,7 +109,13 @@ class VocaContorller extends Controller
 
     public function mySearch($search) {
         $voca = Vocabulary::where('user_id', auth()->user()['id']) -> where('title', 'like', '%'.$search.'%') -> get();
-        
+
+        return $voca;
+    }
+
+    public function search($search) {
+        $voca = Vocabulary::where('public', 1) -> where('title', 'like', '%'.$search.'%') -> get();
+
         return $voca;
     }
 
