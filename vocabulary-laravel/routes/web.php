@@ -40,7 +40,9 @@ Route::middleware(['cors'])->group(function(){
             Route::post('store', [VocaContorller::class, 'store']);
             Route::delete('/delete/{id}', [VocaContorller::class, 'delete']);
             Route::put('/edit/{id}',[VocaContorller::class, 'edit']);
-            Route::get('/myVoca/{id}',[VocaContorller::class, 'myVoca']);
+            Route::get('/myVoca',[VocaContorller::class, 'myVoca']);
+            Route::get('/mySearch/{search}',[VocaContorller::class, 'mySearch']);
+            Route::get('/search/{search}',[VocaContorller::class, 'search']);
         });
 
         Route::prefix('word') -> group(function () {
@@ -49,6 +51,7 @@ Route::middleware(['cors'])->group(function(){
             Route::delete('/delete/{id}',[WordController::class,'delete']);
             Route::put('/edit/{id}',[WordController::class,'edit']);
             Route::put('/important/{id}',[WordController::class,'important']);
+            Route::get('/shuffle/{id}', [WordController::class,'shuffle']);
         });
     });
 

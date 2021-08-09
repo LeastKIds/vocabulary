@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Vocabulary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VocaContorller extends Controller
 {
+    public function __construct() {
+        $this -> middleware(['auth']);
+    }
+
     // 단어장 목록
     public function show()
     {
@@ -24,14 +29,25 @@ class VocaContorller extends Controller
 //        $data = json_decode($request, true);
 
         $title = $request['title'];
-        $user_id = $request['user_id'];
+        $user_id = auth() -> user()['id'];
         $public = $request['public'];
 
-        $request -> validate([
-            'title' => 'required',
-            'user_id' => 'required',
-            'public' => 'required'
-        ]);
+        if($title == null)
+            return response('title is null', 400);
+        else if($user_id == null)
+            return response('user_id is null', 400);
+        else if($public == null)
+            return response('public is null', 400);
+
+//        $validator = $request -> validate([
+//            'title' => 'required',
+//            'user_id' => 'required',
+//            'public' => 'required'
+//        ]);
+
+//        if($validator -> fails()) {
+//            return $validator;
+//        }
 
         $voca = new Vocabulary();
         $voca -> title = $title;
@@ -57,6 +73,13 @@ class VocaContorller extends Controller
 
     public function edit(Request $request, $id) {
 
+        $title = $request['title'];
+        $public = $request['public'];
+
+        if($title == null)
+            return response('title is null', 400);
+        else if($public == null)
+            return response('public is null', 400);
 
         $request -> validate([
             'title' => 'required',
@@ -76,11 +99,24 @@ class VocaContorller extends Controller
         return response('vocabulary edit');
     }
 
-    public function myVoca($id)
+    public function myVoca()
     {
-
+        $id=auth()->user()['id'];
         $voca = Vocabulary::where('user_id',$id) -> orderBy('created_at','DESC') -> get();
 
         return $voca;
     }
+
+    public function mySearch($search) {
+        $voca = Vocabulary::where('user_id', auth()->user()['id']) -> where('title', 'like', '%'.$search.'%') -> get();
+
+        return $voca;
+    }
+
+    public function search($search) {
+        $voca = Vocabulary::where('public', 1) -> where('title', 'like', '%'.$search.'%') -> get();
+
+        return $voca;
+    }
+
 }
