@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
+      <router-link to="/">
+        <v-icon>mdi-book-alphabet</v-icon>
+      </router-link>
+      <span class="ml-2">Vocabulary</span>
     </v-app-bar>
 
     <v-main>
