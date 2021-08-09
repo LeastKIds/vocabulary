@@ -211,6 +211,23 @@
 
 
 
+### 인증
+
+- 회원가입
+
+  - ```php
+    http://localhost:8000/register
+    // post
+    {
+       "name" : "이름",
+       "email" : "이메일",
+       "password" : "패스워드",
+       "password_confirmation" : "패스워드랑 똑같이"
+    }
+    ```
+
+
+
 ### 단어장 CRUD
 
 - create
