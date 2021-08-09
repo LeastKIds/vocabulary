@@ -33,6 +33,7 @@ class VocaContorller extends Controller
             return response('user_id is null', 400);
         else if($public == null)
             return response('public is null', 400);
+
         $validator = $request -> validate([
             'title' => 'required',
             'user_id' => 'required',
@@ -75,7 +76,7 @@ class VocaContorller extends Controller
             return response('title is null', 400);
         else if($public == null)
             return response('public is null', 400);
-        
+
         $request -> validate([
             'title' => 'required',
             'public' => 'required'

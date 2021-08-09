@@ -226,7 +226,26 @@
     }
     ```
 
+- 로그인
 
+  - ```php
+    http://localhost:8000/login
+    // post
+    {
+    	"email" : "이메일",
+      "password" : "패스워드"
+    }
+    
+    
+    ```
+
+- 로그아웃
+
+  - ```php
+    http://localhost:8000/login
+    // post
+    // 다른 정보 필요 없음
+    ```
 
 ### 단어장 CRUD
 
