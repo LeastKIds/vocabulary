@@ -1,16 +1,17 @@
 <template>
   <div class="hello">
-      <br>
-      <button v-on:click="logout"> 로그아웃 </button>
-      <button> 공개 단어장 </button>
-      <button> 검색 </button>
-      <button> 정렬 </button>
-
-  <div>
-    <h1>단 어 장 ~</h1>
-  </div>
-<!-- <h1>{{ msg }}</h1> -->
-
+    <v-container>
+      <v-row>
+        <v-btn v-on:click="logout"> 로그아웃 </v-btn>  
+        <v-btn> 공개 단어장 </v-btn>
+        <v-btn> 검색 </v-btn>
+        <v-btn> 정렬 </v-btn>
+      </v-row>
+      <v-row>
+        <h1>단 어 장</h1>
+        <!-- <h1>{{ msg }}</h1> -->
+      </v-row>
+    </v-container>
   </div>
 
 </template>
@@ -23,16 +24,9 @@ export default {
       msg: '메인화면입니다'
     }
   },
-  name: 'logout',
-  data(){
-    return{
-
-    }
-  },
-
   methods : {
     logout(){
-    this.$router.replace('login')
+      this.$router.replace('login')
     }
   }
 }
