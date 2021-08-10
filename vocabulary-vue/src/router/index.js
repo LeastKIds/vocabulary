@@ -16,11 +16,11 @@ export default new Router({
     },
     {
       path:'/signup',
-      name:'SignUp',
+      name:'signUp',
       component: SignUp
     },
     {
-      path: '/main',
+      path: '/hello',
       name: 'main',
       component: Main
     },

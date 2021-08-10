@@ -26,7 +26,7 @@ export default {
   },
   methods : {
     logout(){
-      this.$router.replace('login')
+      this.$router.replace('signin')
     }
   }
 }
