@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -33,11 +34,33 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+//        $request->validate([
+//            'name' => 'required|string|max:255',
+//            'email' => 'required|string|email|max:255|unique:users',
+//            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+//        ]);
+
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $validator = Validator::make(
+            array(
+                'name' => $name,
+                'email' => $email,
+                'password' => $password
+            ),
+            array(
+                'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+            'password' => ['required', Rules\Password::defaults()],
+            )
+        );
+
+        if($validator->fails()) {
+            $message = $validator->messages();
+            return response($message,400);
+        }
 
         $profile = new User();
         $profile -> name = $request['name'];
