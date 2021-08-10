@@ -25,7 +25,7 @@ class WordController extends Controller
     public function store(Request $request) {
 
 
-        $user_id = $request['user_id'];
+        $user_id = auth()->user()['id'];
         $vocabulary_id = $request['vocabulary_id'];
 
         $validator = Validator::make(
