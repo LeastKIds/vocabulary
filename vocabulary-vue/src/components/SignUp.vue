@@ -51,8 +51,8 @@
 </template>
 
 <script>
-
 import axios from 'axios'
+
 export default {
   name: 'signUp',
   data(){
@@ -96,9 +96,10 @@ export default {
         axios.post('/api/register', data)
         .then(response => {
           console.log(response.data)
-          this.users = response.data
+          this.users.data = response.data
           console.log(this.users.data)
-          
+          alert('Signup Success')
+          this.$router.replace('signin')
         })
         .catch(err => {
           console.log(err)

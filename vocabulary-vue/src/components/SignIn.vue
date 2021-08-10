@@ -25,8 +25,10 @@
           outlined
             ></v-text-field>
         </v-row>
-      <v-btn>로그인</v-btn>
-      <p>만일 계정이 없다면,<router-link to="/signup"> 회원가입</router-link>을 먼저 진행 해주세요</p>
+        <v-btn type="submit" color="primary">로그인</v-btn>
+        <v-row class="mt-5">
+          <p>만일 계정이 없다면,<router-link to="/signup"> 회원가입</router-link>을 먼저 진행 해주세요</p>
+        </v-row>
       </v-form>
     </v-card>
   </v-container>
@@ -58,9 +60,9 @@ export default {
       axios.post('/api/login', data)
       .then(response=> {
           console.log(response)
-          this.users = response.data
-
-          this.$router.replace('main')
+          this.users.data = response.data
+          alert('Login Success')
+          this.$router.replace('hello')
       })
       .catch( err => {
           console.log(err)

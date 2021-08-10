@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Main',
   data () {
@@ -26,7 +27,15 @@ export default {
   },
   methods : {
     logout(){
-      this.$router.replace('signin')
+      axios.post('/api/logout')
+      .then(res => {
+        console.log(res.data)
+        alert('Logout')
+        this.$router.replace('signin')
+      })
+      .catch(err => {
+        console.log(err)
+      })
     }
   }
 }
