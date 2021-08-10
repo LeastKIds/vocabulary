@@ -20,25 +20,26 @@
 import axios from 'axios'
 export default {
   name: 'Main',
-  data () {
+  data() {
     return {
       msg: '메인화면입니다'
     }
   },
-  methods : {
-    logout(){
-      axios.post('/api/logout')
-      .then(res => {
-        console.log(res.data)
-        alert('Logout')
-        this.$router.replace('signin')
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  methods: {
+    logout() {
+        axios.post('/api/logout', { withCredentials: true })
+        .then(res => {
+          console.log(res.data)
+          alert('Logout')
+          this.$router.replace('signin')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
     }
   }
-}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

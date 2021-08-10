@@ -12,10 +12,20 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected function redirectTo($request)
-    {
-        if (! $request->expectsJson()) {
-            return 'https://naver.com';
-        }
-    }
+//    protected function redirectTo($request)
+//    {
+//        if (!$request->expectsJson()) {
+////            dd('login error');
+//            return 'https://naver.com';
+//        }
+//    }
 }
+
+//    protected function getResponse($request)
+//    {
+//        if(! $request->expectsJson()) {
+//            return response('logoin error');
+//        }
+//
+//    }
+//}
