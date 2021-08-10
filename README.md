@@ -242,7 +242,7 @@
 - 로그아웃
 
   - ```php
-    http://localhost:8000/login
+    http://localhost:8000/logout
     // post
     // 다른 정보 필요 없음
     ```
