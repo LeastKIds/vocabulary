@@ -411,7 +411,9 @@
   - ```json
     // http://localhost:8000/voca/word/store
     // 위 주소로 post로 보내기
-    [
+    {
+      "vocabulary_id" : "단어장 아이디",
+      "word" : [
         {
             "chinese_character": "**한자**",
             "hiragana": "**히라가나**",
@@ -426,8 +428,8 @@
             "user_id": **유저 아이디**,
             "vocabulary_id": **단어장 아이디**
         }
-     ]
-    
+      ]
+    }
     // 위의 형식으로 JsonArray 형식으로 보냄
     // 성공시 save words가 옴
     
