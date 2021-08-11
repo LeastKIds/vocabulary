@@ -82,14 +82,16 @@ class WordController extends Controller
         }
 
 
-        return response('save words',200);
+        $result = ['success' => 1];
+        return response() -> json($result);
     }
 
     public function delete($id) {
         $word = Word::find($id);
         $word -> delete();
 
-        return response('success delete');
+        $result = ['success' => 1];
+        return response() -> json($result);
     }
 
     public function edit(Request $request, $id) {
@@ -106,7 +108,8 @@ class WordController extends Controller
 
         $word -> save();
 
-        return response('success eidt');
+        $result = ['success' => 1];
+        return response() -> json($result);
     }
 
     public function important($id) {
@@ -119,7 +122,8 @@ class WordController extends Controller
 
         $word -> save();
 
-        return response('check word');
+        $result = ['success' => 1];
+        return response() -> json($result);
     }
 
     public function shuffle($id) {
