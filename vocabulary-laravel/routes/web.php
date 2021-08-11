@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VocaContorller;
 use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,8 @@ Route::middleware(['cors'])->group(function(){
         return csrf_token();
     });
 
+    Route::get('test', [WordController::class, 'test']);
+
     Route::prefix('voca') -> group(function () {
 
         Route::prefix('vocabulary') -> group(function () {
@@ -53,6 +56,8 @@ Route::middleware(['cors'])->group(function(){
             Route::put('/important/{id}',[WordController::class,'important']);
             Route::get('/shuffle/{id}', [WordController::class,'shuffle']);
         });
+
+
     });
 
 

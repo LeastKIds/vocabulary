@@ -12,7 +12,7 @@ class WordController extends Controller
     //
 
     public function __construct() {
-        $this -> middleware(['auth']);
+        $this -> middleware(['auth']) -> except(['test']) ;
     }
 
     public function show($vocabulary_id) {
@@ -128,4 +128,5 @@ class WordController extends Controller
 
         return $shuffled;
     }
+
 }
