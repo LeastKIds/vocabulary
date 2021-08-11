@@ -68,7 +68,8 @@ class VocaContorller extends Controller
         $post = Vocabulary::find($id);
         $post -> delete();
 
-        return response('vocabulary delete');
+        $result = ['success' => 1];
+        return response() -> json($result);
     }
 
     public function edit(Request $request, $id) {
@@ -103,7 +104,8 @@ class VocaContorller extends Controller
 
         $voca -> save();
 
-        return response('vocabulary edit');
+        $result = ['success' => 1];
+        return response() -> json($result);
     }
 
     public function myVoca()
