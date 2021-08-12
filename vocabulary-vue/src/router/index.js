@@ -33,6 +33,11 @@ const routes = [
       next()
     }
   },
+  { path: '/main', 
+    name: 'Main', 
+    component:Main,
+   
+  },
 ]
 
 const router = new VueRouter({
