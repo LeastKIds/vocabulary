@@ -5,7 +5,7 @@
         <h1>Login</h1>
       </v-row>
       <v-card class="mt-5">
-        <v-form class="mx-10" @submit.prevent="login()">
+        <v-form class="mx-10" @submit.prevent="login(email, password)">
         <v-row>
           <v-text-field
             v-model="email"
@@ -36,8 +36,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'login',
   data(){
@@ -52,20 +50,13 @@ export default {
     
   },
   methods : {
-    login() {
-      const data = {
-        email: this.email,
-        password: this.password
-      }
-      axios.post('/api/login', data)
-      .then(response=> {
-          console.log(response)
-          this.users.data = response.data
-          alert('Login Success')
-          this.$router.replace('hello')
+    login(email, password) {
+      this.$store.dispatch('signin', {email, password})
+      .then(() => {
+        this.$router.push('/')
       })
-      .catch( err => {
-          console.log(err)
+      .catch(() => {
+        console.log('loginFail.')
       })
     },
   }

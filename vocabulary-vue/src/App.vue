@@ -24,7 +24,15 @@ export default {
   },
 
   data: () => ({
-    //
+    token:'',
   }),
+  mounted() {
+    // this.token = this.$cookies.get('XSRF-TOKEN')
+    // if(!this.token) {
+    //   alert("You don't signin")
+    //   this.$router.replace('signin')
+    // }
+  }
+  
 };
 </script>

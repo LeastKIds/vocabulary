@@ -1,28 +1,59 @@
 import Vue from 'vue'
-import Router from 'vue-router'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
 
-export default new Router({
-  mode:'history',
-  routes: [
-    {
-      path: '/signin',
-      name: 'signin',
-      component: SignIn
-    },
-    {
-      path:'/signup',
-      name:'signUp',
-      component: SignUp
-    },
-    {
-      path: '/hello',
-      name: 'main',
-      component: Main
-    },
-  ]
+Vue.use(VueRouter)
+
+const routes = [
+  { path: '/',       name: 'Main',   component:Main },
+  { path: '/signin', 
+    name: 'Signin', 
+    component:SignIn, 
+
+    beforeEnter:(to, from, next) => {
+      if(localStorage.getItem('accessToken') != null) {
+        console.log(localStorage.getItem('accessToken'))
+        alert('You already Signin')
+        next('/')
+      }
+      next()
+    }
+  },
+  { path: '/signup', 
+    name: 'Signup', 
+    component:SignUp,
+    beforeEnter:(to, from, next) => {
+      if(localStorage.getItem('accessToken') != null) {
+        alert('You already Signin')
+        next('/')
+      }
+      next()
+    }
+  },
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
+
+// router.beforeEach((to, from, next) => {
+//     if(to.matched.some((recode) => recode.meta.requiresAuth)) {
+//       console.log('Token Check')
+//       if(localStorage.getItem('accessToken') == null) {
+//         alert('Signin please')
+//         next('/signin')
+//       }
+//       else if(localStorage.getItem('accessToken') != null) {
+//         alert('You already Signin')
+//         next('/')
+//       }
+//     }
+//     next();
+//   }
+// )
+export default router
