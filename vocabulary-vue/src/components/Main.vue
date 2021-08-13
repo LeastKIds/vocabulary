@@ -15,6 +15,7 @@
               <v-btn> 공개 단어장 </v-btn>
               <v-btn> 검색 </v-btn>
               <v-btn> 정렬 </v-btn>
+              <router-link to="/signin"><v-btn>로그인</v-btn></router-link>
       <v-card>
       <v-list-item one-line >
       <v-list-item-content>
@@ -72,9 +73,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
-// import 
 
 export default {
   name: 'Main',
@@ -85,11 +83,8 @@ export default {
   },
   methods: {
     logout() {
-        axios
-        .post('/api/logout', { withCredentials: true })
-        .then(res => {
-          console.log(res.data)
-          this.$store.commit('logout')
+        this.$store.dispatch('logout')
+        .then(() => {
           this.$router.replace('signin')
         })
         .catch(err => {

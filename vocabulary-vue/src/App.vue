@@ -4,7 +4,8 @@
       <router-link to="/">
         <v-icon>mdi-book-alphabet</v-icon>
       </router-link>
-      <span class="ml-2">Vocabulary</span>
+      <span class="ml-2"><h2>Vocabulary</h2></span>
+      <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>
@@ -24,7 +25,7 @@ export default {
   },
 
   data: () => ({
-    token:'',
+    
   }),
   mounted() {
     // this.token = this.$cookies.get('XSRF-TOKEN')
