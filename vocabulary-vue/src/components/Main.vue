@@ -11,11 +11,11 @@
           <v-layout row >
             <!-- 2단패널 의 좌측 -->
             <v-flex xs8>
-              <v-btn v-on:click="logout" >로그아웃</v-btn>
+              <v-btn v-if="btnshow" v-on:click="logout" >로그아웃</v-btn>
+              <router-link v-else to="/signin" style="text-decoration: none"><v-btn >로그인</v-btn></router-link>
               <v-btn> 공개 단어장 </v-btn>
               <v-btn> 검색 </v-btn>
               <v-btn> 정렬 </v-btn>
-              <router-link to="/signin"><v-btn>로그인</v-btn></router-link>
       <v-card>
       <v-list-item one-line >
       <v-list-item-content>
@@ -73,14 +73,31 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: 'Main',
   data() {
     return {
-      msg: '메인화면입니다'
+      msg: '메인화면입니다',
+      btnshow: true
     }
   },
+  created() {
+    axios.get('/api/auth/user')
+      .then((res) => {
+        if(res.data.login == 1){
+          console.log(res.data.login)
+          this.btnshow = true
+        } else {
+          this.btnshow = false
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  },
+
   methods: {
     logout() {
         this.$store.dispatch('logout')
@@ -90,7 +107,7 @@ export default {
         .catch(err => {
           console.log(err)
         })
-      },
+      }
     }
   }
 
