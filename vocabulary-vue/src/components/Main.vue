@@ -11,6 +11,7 @@
           <v-layout row >
             <!-- 2단패널 의 좌측 -->
             <v-flex xs8>
+<<<<<<< HEAD
 
             <!-- 버튼! -->
             <v-btn
@@ -42,6 +43,13 @@
 
       <br>
       <br>
+=======
+              <v-btn v-on:click="logout" >로그아웃</v-btn>
+              <v-btn> 공개 단어장 </v-btn>
+              <v-btn> 검색 </v-btn>
+              <v-btn> 정렬 </v-btn>
+              <router-link to="/signin"><v-btn>로그인</v-btn></router-link>
+>>>>>>> c4bb25917ec6cdf9d3a0dd0a843e0941e4bc5a76
       <v-card>
       <v-list-item one-line >
       <v-list-item-content>
@@ -136,11 +144,8 @@ export default {
   },
   methods: {
     logout() {
-        axios
-        .post('/api/logout', { withCredentials: true })
-        .then(res => {
-          console.log(res.data)
-          this.$store.commit('logout')
+        this.$store.dispatch('logout')
+        .then(() => {
           this.$router.replace('signin')
         })
         .catch(err => {

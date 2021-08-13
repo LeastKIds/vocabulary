@@ -81,6 +81,15 @@ export default {
             },
     }
   },
+  // beforeRouteEnter (to, from, next) {
+  //   let user = {}
+  //   user = this.$store.dispatch('loginCheck')
+  //   if(user.id == 1) {
+  //     alert('You already Signin')
+  //     next('/')
+  //   }
+  //   next()
+  // },
   mounted() {
     
   },

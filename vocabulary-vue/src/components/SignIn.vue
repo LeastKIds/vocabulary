@@ -43,7 +43,6 @@ export default {
       email:'',
       password:'',
       show: false,
-      users: [],
     }
   },
   mounted() {
@@ -51,6 +50,8 @@ export default {
   },
   methods : {
     login(email, password) {
+      console.log(email)
+      console.log(password)
       this.$store.dispatch('signin', {email, password})
       .then(() => {
         this.$router.push('/')
