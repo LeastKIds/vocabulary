@@ -42,13 +42,13 @@
              
           <!-- 2단패널 의 우측 --> 
 
-          <x-flex low>
+          <v-flex low>
           <v-layout column>
           <v-btn> 추가 </v-btn>
           <v-btn> 삭제 </v-btn>
           <v-btn> 수정 </v-btn>    
           </v-layout>
-          </x-flex>
+          </v-flex>
        
 
 
