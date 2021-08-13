@@ -2,6 +2,7 @@ import Vue from 'vue'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
+import WordBook from '@/components/WordBook'
 import VueRouter from 'vue-router'
 
 
@@ -36,7 +37,10 @@ const routes = [
   { path: '/main', 
     name: 'Main', 
     component:Main,
-   
+  },
+  { path: '/wordbook', 
+    name: 'WordBook', 
+    component:WordBook
   },
 ]
 
