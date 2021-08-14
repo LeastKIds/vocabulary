@@ -26,9 +26,25 @@ const routes = [
   { path: '/signup', 
     name: 'Signup', 
     component:SignUp,
-    meta:{requiresAuth:true}
+    beforeEnter:(to, from, next) => {
+      console.log('Signup LoginCheck')
+      axios.get('/api/auth/user')
+      .then(res => {
+        console.log(res.data)
+        if(res.data.login == 1){
+          alert('You already Signin')
+          next('/')
+        } else
+        next()
+      })
+      .catch((err) => {
+        console.log(err)
+        console.log('ERROR')
+      })
+    }
   },
-  { path: '/wordbook', 
+  { 
+    path: '/wordbook', 
     name: 'WordBook', 
     component:WordBook,
     meta:{requiresAuth:true}
