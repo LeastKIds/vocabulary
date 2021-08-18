@@ -65,7 +65,8 @@ class VocaContorller extends Controller
     }
 
     public function delete($id) {
-        $post = Vocabulary::find($id);
+        $user_id = auth()->user()['id'];
+        $post = Vocabulary::where('user_id',$user_id) -> find($id);
         $post -> delete();
 
         $result = ['success' => 1];
@@ -76,6 +77,7 @@ class VocaContorller extends Controller
 
         $title = $request['title'];
         $public = $request['public'];
+        $user_id = auth() -> user()['id'];
 
 
         $validator = Validator::make(
@@ -94,7 +96,7 @@ class VocaContorller extends Controller
             return response($message,400);
         }
 
-        $voca = Vocabulary::findOrFail($id);
+        $voca = Vocabulary::where('user_id',$user_id) -> findOrFail($id);
 
         $title = $request -> title;
         $public = $request -> public;

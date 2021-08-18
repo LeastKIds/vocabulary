@@ -12,7 +12,7 @@ class WordController extends Controller
     //
 
     public function __construct() {
-        $this -> middleware(['auth']) -> except(['test']) ;
+        $this -> middleware(['auth']);
     }
 
     public function show($vocabulary_id) {
@@ -87,7 +87,8 @@ class WordController extends Controller
     }
 
     public function delete($id) {
-        $word = Word::find($id);
+        $user_id = auth() -> user()['id'];
+        $word = Word::where('user_id',$user_id) -> find($id);
         $word -> delete();
 
         $result = ['success' => 1];
@@ -96,7 +97,8 @@ class WordController extends Controller
 
     public function edit(Request $request, $id) {
 
-        $word = Word::findOrFail($id);
+        $user_id = auth() -> user()['id'];
+        $word = Word::where('user_id',$user_id) -> findOrFail($id);
 
         $chinese_character = $request -> chinese_character;
         $hiragana = $request-> hiragana;
