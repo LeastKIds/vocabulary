@@ -2,8 +2,7 @@
   <div class="main">
     <v-container >
       <v-layout column>
-      <!-- 타이틀 영역 --><input type="text" v-model="user">
-  <input type="text" v-model="comment">
+      <!-- 타이틀 영역 -->
       <br>
       <v-flex>
       </v-flex>
@@ -48,8 +47,12 @@
       <br>
       <br>
     <ul>
-              <li v-for="detail in details" :key="detail.id">{{ detail.info }}</li>
-            </ul>
+              <!-- <li v-for="detail in messages" :key="detail.id">{{ detail.info }}</li> -->
+             <li>안녕</li>
+             <li>안녕</li>
+    </ul>
+
+    こんばんは
       <!-- <v-card>
       <v-list-item one-line >
       <v-list-item-content>
@@ -78,7 +81,7 @@
 
           <v-flex low>
           <v-layout column>
-  <v-btn
+          <v-btn
               class="mx-2"
               fab
               dark
@@ -119,7 +122,7 @@
             </v-btn>
             &nbsp; 
              
-            <v-btn @click="save">저장</v-btn><br>
+            <!-- <v-btn @click="save">저장</v-btn><br> -->
           </v-layout>
           </v-flex>
        
@@ -185,7 +188,8 @@ export default {
         })
       },
         vo_plus() {
-        prompt('단어장 제목을 입력하세요~', '무제');
+        const name = prompt('단어장 제목을 입력하세요~', '무제');
+        console.log(name);
         }
       },
       save(){
