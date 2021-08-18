@@ -130,4 +130,8 @@ class VocaContorller extends Controller
         return $voca;
     }
 
+    public function test(Request $request) {
+        return $request;
+    }
+
 }
