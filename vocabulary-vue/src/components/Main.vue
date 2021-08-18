@@ -11,10 +11,49 @@
           <v-layout row >
             <!-- 2단패널 의 좌측 -->
             <v-flex xs8>
-              <v-btn> 공개 단어장 </v-btn>
-              <v-btn> 검색 </v-btn>
-              <v-btn> 정렬 </v-btn>
-      <v-card>
+              <!-- <v-btn v-if="btnshow" v-on:click="logout" >로그아웃</v-btn>
+              <router-link v-else to="/signin" style="text-decoration: none"><v-btn >로그인</v-btn></router-link> -->
+             <!-- 버튼! -->
+            <v-btn
+              color="yellow"
+              elevation="5"
+              rounded
+              v-if="btnshow" v-on:click="logout"
+              >로그아웃</v-btn>
+              <router-link v-else to="/signin" style="text-decoration: none">
+              <v-btn >로그인</v-btn></router-link>
+              
+            &nbsp;
+            <v-btn
+              color="accent"
+              elevation="5"
+              rounded
+            >공개 단어장</v-btn>
+            &nbsp;
+            <v-btn
+              color="accent"
+              elevation="5"
+              rounded
+            >검색</v-btn>
+            &nbsp;
+            <v-btn
+              color="accent"
+              elevation="5"
+              rounded
+            >정렬</v-btn>
+            &nbsp;
+
+
+      <br>
+      <br>
+    <ul>
+              <!-- <li v-for="detail in messages" :key="detail.id">{{ detail.info }}</li> -->
+             <li>안녕</li>
+             <li>안녕</li>
+    </ul>
+
+    こんばんは
+      <!-- <v-card>
       <v-list-item one-line >
       <v-list-item-content>
         <v-list-item-title class="text-h5 mb-1">
@@ -33,19 +72,61 @@
         Button
       </v-btn>
     </v-card-actions>
-  </v-card>
-             </v-flex>   
+  </v-card> -->
+             </v-flex>
+
+
+             
           <!-- 2단패널 의 우측 --> 
 
           <v-flex low>
           <v-layout column>
-          <v-btn> 추가 </v-btn>
-          <v-btn> 삭제 </v-btn>
-          <v-btn> 수정 </v-btn>    
+          <v-btn
+              class="mx-2"
+              fab
+              dark
+              large
+              elevation="5"
+              color="indigo"
+              v-on:click="vo_plus"
+             >
+              <v-icon dark>
+              mdi-plus
+              </v-icon>
+            </v-btn>
+            &nbsp;
+
+            <v-btn
+              class="mx-2"
+              fab
+              dark
+              large
+              color="cyan"
+            >
+              <v-icon dark>
+              mdi-pencil
+              </v-icon>
+           </v-btn>
+           &nbsp;
+
+            <v-btn
+              class="mx-2"
+              fab
+              dark
+              large
+              color="red"
+            >
+              <v-icon dark>
+              mdi-delete
+              </v-icon>
+            </v-btn>
+            &nbsp; 
+             
+            <!-- <v-btn @click="save">저장</v-btn><br> -->
           </v-layout>
           </v-flex>
         </v-layout>
-        
+           
       </v-flex>
       
     </v-layout>
@@ -64,7 +145,10 @@ export default {
   data() {
     return {
       msg: '메인화면입니다',
-      btnshow: true
+      btnshow: true,
+      user : null,
+      comment : null, 
+      messages:[],
     }
   },
   created() {
@@ -72,8 +156,30 @@ export default {
   },
 
   methods: {
-    
-    }
+    logout() {
+        this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.replace('signin')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      },
+        vo_plus() {
+        const name = prompt('단어장 제목을 입력하세요~', '무제');
+        console.log(name);
+        }
+      },
+      save(){
+              const message= {
+                  user:this.user,
+                  comment:this.comment,
+              };
+              // 내림차순 unshift
+              this.messages.unshift(message)
+              this.user=null
+              this.comment=null
+          }
   }
 
 </script>

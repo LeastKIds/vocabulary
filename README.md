@@ -282,10 +282,9 @@
     	"public" : "**공개할 껀지. 하면 1, 안하면 0**"
     }
     // 위의 양식으로 ** ** 부분만 바꿔서 제이슨으로 서버로 전송
-    // 성공했을 시 vocabulary created 라고 적힘
     
     ```
-
+  
 - read
 
   - ```json
@@ -332,17 +331,16 @@
     	"public" : "**공개할 껀지. 하면 1, 안하면 0**"
     }
     // 위의 양식대로 json으로 보냄
-    // 성공시 vocabulary edit 문구가 옴
     
     ```
-
+  
 - delete
 
   - ```json
     // http://localhost:8000/voca/vocabulary/delete/{id}
     // 위 주로소 delete로 보냄
     // 양식은 필요 없음.
-    // 성공시 vocabulary delete 문구가 옴
+    
     ```
 
 - 내 단어장 보기
@@ -440,20 +438,15 @@
             "chinese_character": "**한자**",
             "hiragana": "**히라가나**",
             "korean": "**한글**",
-            "user_id": **유저 아이디**,
-            "vocabulary_id": **단어장 아이디**
         },
         {
             "chinese_character": "**한자**",
             "hiragana": "**히라가나**",
             "korean": "**한글**",
-            "user_id": **유저 아이디**,
-            "vocabulary_id": **단어장 아이디**
         }
       ]
     }
     // 위의 형식으로 JsonArray 형식으로 보냄
-    // 성공시 save words가 옴
     
     ```
     
@@ -504,21 +497,19 @@
     }
     
     // 위의 양식으로 보냄
-    // 성공시 success eidt로 옴
     
     ```
-
+  
 - delete
 
   - ```json
     // http://localhost:8000/voca/word/delete/{id}
     // 위의 주소로 delete로 보냄
     // 양식은 필요 없음
-    // 성공시 success delete가 옴
     
     
     ```
-
+  
 - important
 
   - ```json
@@ -527,7 +518,7 @@
     // 양식은 필요 없음
     // 중요도 표시가 안 된건 중요도 표시가 되고,
     // 중요도 표시가 된 건 중요도 표시가 안 되도록 바뀜.
-    // 성공시 success important가 옴
+    
     ```
 
 - 단어 섞기

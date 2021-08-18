@@ -34,7 +34,7 @@ Route::middleware(['cors'])->group(function(){
         return csrf_token();
     });
 
-    Route::get('test', [WordController::class, 'test']);
+    Route::post('test', [VocaContorller::class, 'test']);
 
     Route::prefix('voca') -> group(function () {
 
@@ -56,6 +56,7 @@ Route::middleware(['cors'])->group(function(){
             Route::put('/important/{id}',[WordController::class,'important']);
             Route::get('/shuffle/{id}', [WordController::class,'shuffle']);
         });
+
 
 
     });

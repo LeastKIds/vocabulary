@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class VocaContorller extends Controller
 {
-    public function __construct() {
-        $this -> middleware(['auth']);
-    }
+//    public function __construct() {
+//        $this -> middleware(['auth']);
+//    }
 
     // 단어장 목록
     public function show()
@@ -65,7 +65,8 @@ class VocaContorller extends Controller
     }
 
     public function delete($id) {
-        $post = Vocabulary::find($id);
+        $user_id = auth()->user()['id'];
+        $post = Vocabulary::where('user_id',$user_id) -> find($id);
         $post -> delete();
 
         $result = ['success' => 1];
@@ -76,6 +77,7 @@ class VocaContorller extends Controller
 
         $title = $request['title'];
         $public = $request['public'];
+        $user_id = auth() -> user()['id'];
 
 
         $validator = Validator::make(
@@ -94,7 +96,7 @@ class VocaContorller extends Controller
             return response($message,400);
         }
 
-        $voca = Vocabulary::findOrFail($id);
+        $voca = Vocabulary::where('user_id',$user_id) -> findOrFail($id);
 
         $title = $request -> title;
         $public = $request -> public;
@@ -126,6 +128,10 @@ class VocaContorller extends Controller
         $voca = Vocabulary::where('public', 1) -> where('title', 'like', '%'.$search.'%') -> get();
 
         return $voca;
+    }
+
+    public function test(Request $request) {
+        return $request;
     }
 
 }
