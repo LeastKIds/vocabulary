@@ -11,8 +11,6 @@
           <v-layout row >
             <!-- 2단패널 의 좌측 -->
             <v-flex xs8>
-              <v-btn v-if="btnshow" v-on:click="logout" >로그아웃</v-btn>
-              <router-link v-else to="/signin" style="text-decoration: none"><v-btn >로그인</v-btn></router-link>
               <v-btn> 공개 단어장 </v-btn>
               <v-btn> 검색 </v-btn>
               <v-btn> 정렬 </v-btn>
@@ -36,10 +34,7 @@
       </v-btn>
     </v-card-actions>
   </v-card>
-             </v-flex>
-
-
-             
+             </v-flex>   
           <!-- 2단패널 의 우측 --> 
 
           <v-flex low>
@@ -49,17 +44,6 @@
           <v-btn> 수정 </v-btn>    
           </v-layout>
           </v-flex>
-       
-
-
-
-
-
-
-
-
-
-
         </v-layout>
         
       </v-flex>
@@ -73,7 +57,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import store from '../store'
 
 export default {
   name: 'Main',
@@ -84,30 +68,11 @@ export default {
     }
   },
   created() {
-    axios.get('/api/auth/user')
-      .then((res) => {
-        if(res.data.login == 1){
-          console.log(res.data.login)
-          this.btnshow = true
-        } else {
-          this.btnshow = false
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    
   },
 
   methods: {
-    logout() {
-        this.$store.dispatch('logout')
-        .then(() => {
-          this.$router.replace('signin')
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      }
+    
     }
   }
 
