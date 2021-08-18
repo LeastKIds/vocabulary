@@ -43,7 +43,7 @@ class WordController extends Controller
         $vocabulary = Vocabulary::findOrFail($vocabulary_id);
         if($user_id != $vocabulary -> user_id)
             return ['success' => 0, 'error' => '권한이 없습니다.'];
-        
+
         $validator = Validator::make(
             array(
                 'user_id' => $user_id,

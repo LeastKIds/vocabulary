@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class VocaContorller extends Controller
 {
-    public function __construct() {
-        $this -> middleware(['auth']);
-    }
+//    public function __construct() {
+//        $this -> middleware(['auth']);
+//    }
 
     // 단어장 목록
     public function show()
