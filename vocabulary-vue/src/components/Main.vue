@@ -48,11 +48,10 @@
       <br>
     <ul>
               <!-- <li v-for="detail in messages" :key="detail.id">{{ detail.info }}</li> -->
-             <li>안녕</li>
-             <li>안녕</li>
+         
     </ul>
-
-    こんばんは
+    <p></p>
+    
       <!-- <v-card>
       <v-list-item one-line >
       <v-list-item-content>
@@ -189,7 +188,44 @@ export default {
       },
         vo_plus() {
         const name = prompt('단어장 제목을 입력하세요~', '무제');
+        
+        if (name==null) {return }
+
+        const user_id = prompt('유저 아이디', '무제');
+        if (name==null) {return }
+        const publicman = prompt('공개여부', '0');
+        if (name==null) {return }
         console.log(name);
+        console.log(user_id);
+        console.log(publicman);
+        axios.post('/api/test',{
+          title:name,user_id:user_id,public:+(publicman)
+          // this:"자",user_id:"전",public:"거"
+          })
+
+            .then(res => {
+
+                if(res.status == 200) { // 로그인 성공
+                    
+                    console.log(res)
+                    console.log('200')
+
+                }
+
+            })
+
+            .catch((err) => { // err
+
+                console.log('err')               
+
+                return Promise.reject(err)
+
+            })
+
+
+
+
+        
         }
       },
       save(){
