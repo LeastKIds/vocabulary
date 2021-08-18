@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vocabulary;
 use App\Models\Word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,17 @@ class WordController extends Controller
 
     public function show($vocabulary_id) {
         $words = Word::where('vocabulary_id', $vocabulary_id) -> get();
+
+        $vocabulary = Vocabulary::findOrFail($vocabulary_id);
+
+        $user_id = auth() -> user()['id'];
+
+//        return $words->user_id;
+//
+        if($user_id != $vocabulary -> user_id && $vocabulary -> public !=0) {
+            $data = ['success' => 0, 'error' => '권한이 없습니다.'];
+            return response()->json($data);
+        }
 
         return $words;
 
