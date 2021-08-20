@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VocaContorller;
 use App\Http\Controllers\WordController;
@@ -55,6 +56,12 @@ Route::middleware(['cors'])->group(function(){
             Route::put('/edit/{id}',[WordController::class,'edit']);
             Route::put('/important/{id}',[WordController::class,'important']);
             Route::get('/shuffle/{id}', [WordController::class,'shuffle']);
+        });
+
+        Route::prefix('admin') -> group(function () {
+            Route::get('users', [AdminController::class,'users']);
+            Route::get('vocabularies', [AdminController::class,'vocabularies']);
+            Route::get('words/{vocabulary_id}', [AdminController::class,'words']);
         });
 
 
