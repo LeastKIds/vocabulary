@@ -58,17 +58,17 @@ Route::middleware(['cors'])->group(function(){
             Route::get('/shuffle/{id}', [WordController::class,'shuffle']);
         });
 
-        Route::prefix('admin') -> group(function () {
-            Route::get('users', [AdminController::class,'users']);
-            Route::get('vocabularies', [AdminController::class,'vocabularies']);
-            Route::get('words/{vocabulary_id}', [AdminController::class,'words']);
-        });
+
 
 
 
     });
 
-
+    Route::prefix('admin') -> group(function () {
+        Route::get('/users', [AdminController::class,'users']);
+        Route::get('/vocabularies', [AdminController::class,'vocabularies']);
+        Route::get('/words/{vocabulary_id}', [AdminController::class,'words']);
+    });
 
 
 });
