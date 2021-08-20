@@ -48,11 +48,10 @@
       <br>
     <ul>
               <!-- <li v-for="detail in messages" :key="detail.id">{{ detail.info }}</li> -->
-             <li>안녕</li>
-             <li>안녕</li>
+         
     </ul>
-
-    こんばんは
+    <p></p>
+    
       <!-- <v-card>
       <v-list-item one-line >
       <v-list-item-content>
@@ -125,17 +124,6 @@
             <!-- <v-btn @click="save">저장</v-btn><br> -->
           </v-layout>
           </v-flex>
-       
-
-
-
-
-
-
-
-
-
-
         </v-layout>
            
       </v-flex>
@@ -149,7 +137,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import store from '../store'
 
 export default {
   name: 'Main',
@@ -163,18 +151,7 @@ export default {
     }
   },
   created() {
-    axios.get('/api/auth/user')
-      .then((res) => {
-        if(res.data.login == 1){
-          console.log(res.data.login)
-          this.btnshow = true
-        } else {
-          this.btnshow = false
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    
   },
 
   methods: {
@@ -188,8 +165,34 @@ export default {
         })
       },
         vo_plus() {
-        const name = prompt('단어장 제목을 입력하세요~', '무제');
-        console.log(name);
+        const title = prompt('단어장 제목을 입력하세요~', '무제');
+        if (title==null) {return }
+        const user_id = prompt('유저 아이디', '무제');
+        if (user_id==null) {return }
+        const public_0 = prompt('공개여부', '0');
+        if (public_0==null) {return }
+
+        console.log(title);
+        console.log(user_id);
+        console.log(public_0);
+        // get, post, delete, put << 다 똑같지만 delete,put은 post
+        // 내가 보내고 싶은 놈들은 한꺼번에 담는다
+        const data = {
+          title: title, //서버로 받아야하는 변수 : 내가 받은 변수
+          user_id:user_id, //동일
+          public:+(public_0), //동일
+        }
+        this.$store.dispatch('vocaSave',data) // store 에 있는 vocaSave함수를 실행한다
+              // 아까만든 data를 보내줌
+
+          .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
+            console.log(res) // 콘솔에 res 를 찍어줌
+          }).catch( // 이것은 오류 코드
+            err=>{
+              console.log(err)
+            }
+          )
+
         }
       },
       save(){

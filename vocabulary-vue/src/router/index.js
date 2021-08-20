@@ -3,12 +3,13 @@ import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
 import WordBook from '@/components/WordBook'
+import ProFile from '@/components/ProFile'
+// import Navigation from '@/components/Navigation'
 import VueRouter from 'vue-router'
+// import store from '../store'
 import store from '../store'
-import axios from 'axios'
 
 Vue.use(VueRouter)
-Vue.use(store)
 
 const routes = [
 
@@ -21,17 +22,30 @@ const routes = [
   { path: '/signin', 
     name: 'Signin', 
     component:SignIn, 
-    meta:{requiresAuth:true}
+    beforeEnter:(to, from, next) => {
+      store.dispatch('loginCheck')
+      .then(res => {
+        console.log(res)
+        if(res.login === 1){
+          alert('You already Signin')
+          next('/')
+        } else
+        next()
+      })
+      .catch((err) => {
+        console.log(err)
+        console.log('ERROR')
+      })
+    }
   },
   { path: '/signup', 
     name: 'Signup', 
     component:SignUp,
     beforeEnter:(to, from, next) => {
-      console.log('Signup LoginCheck')
-      axios.get('/api/auth/user')
+      store.dispatch('loginCheck')
       .then(res => {
-        console.log(res.data)
-        if(res.data.login == 1){
+        console.log(res)
+        if(res.login === 1){
           alert('You already Signin')
           next('/')
         } else
@@ -49,6 +63,12 @@ const routes = [
     component:WordBook,
     meta:{requiresAuth:true}
   },
+  {
+    path: '/profile', 
+    name: 'ProFile', 
+    component:ProFile,
+    meta:{requiresAuth:true}
+  },
 ]
 
 const router = new VueRouter({
@@ -60,17 +80,14 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if(to.matched.some((recode) => recode.meta.requiresAuth)) {
     console.log('Login Check')
-    axios.get('/api/auth/user')
+    store.dispatch('loginCheck')
     .then(res => {
       console.log(res.data)
-      if(res.data.login == 1){
-        alert('You already Signin')
-        next('/')
-      } else {
+      if(res.data.login === 0){
         alert('Signin please')
         next('/signin')
         close;
-      }  
+      }
     })
     .catch((err) => {
       console.log('err')

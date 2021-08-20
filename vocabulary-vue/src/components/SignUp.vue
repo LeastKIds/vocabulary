@@ -67,8 +67,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+import store from '../store'
 export default {
   name: 'signUp',
   data(){
@@ -122,12 +121,9 @@ export default {
           password_confirmation: this.password_confirmation
         }
         console.log(data)
-        axios.post('/api/register', data)
-        .then(response => {
-          console.log(response.data)
-          this.users.data = response.data
-          console.log(this.users.data)
-          alert('Signup Success')
+        store.dispatch('signup', data)
+        .then(res => {
+          console.log(res)      
           this.$router.replace('signin')
         })
         .catch(err => {

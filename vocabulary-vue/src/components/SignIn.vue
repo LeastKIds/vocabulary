@@ -75,7 +75,7 @@ export default {
       console.log(password)
       this.$store.dispatch('signin', {email, password})
       .then(() => {
-        this.$router.push('/')
+        this.$router.replace('/')
       })
       .catch(() => {
         console.log('loginFail.')

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <v-app-bar app color="primary" dark>
       <router-link to="/">
         <v-icon>mdi-book-alphabet</v-icon>
@@ -9,31 +9,24 @@
     </v-app-bar>
 
     <v-main>
+      <Navigation></Navigation>
       <router-view></router-view>
     </v-main>
+    
   </v-app>
 </template>
 
 <script>
+import Navigation from '@/components/Navigation.vue'
 
-// import Main from './components/Main.vue'
 export default {
   name: 'App',
 
   components: {
-    // Main
+    Navigation
   },
 
   data: () => ({
-    
-  }),
-  mounted() {
-    // this.token = this.$cookies.get('XSRF-TOKEN')
-    // if(!this.token) {
-    //   alert("You don't signin")
-    //   this.$router.replace('signin')
-    // }
-  }
-  
-};
+  })
+}
 </script>
