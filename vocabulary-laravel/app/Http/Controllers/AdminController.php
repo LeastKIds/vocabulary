@@ -12,13 +12,13 @@ class AdminController extends Controller
     //
 
     public function users() {
-        $users = User::findAll();
+        $users = User::get();
 
         return $users;
     }
 
     public function vocabularies() {
-        $vocabularies = Vocabulary::findAll();
+        $vocabularies = Vocabulary::get();
 
         return $vocabularies;
     }
