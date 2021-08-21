@@ -29,7 +29,8 @@ class VocaContorller extends Controller
 
 
         $title = $request['title'];
-        $user_id = auth() -> user()['id'];
+//        $user_id = auth() -> user()['id'];
+        $user_id = $request['user_id'];
         $public = $request['public'];
 
 
