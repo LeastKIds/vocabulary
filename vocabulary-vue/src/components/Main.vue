@@ -43,6 +43,11 @@
             >정렬</v-btn>
             &nbsp;
 
+          <v-btn 
+          v-on:click="fetchData"
+          >get data</v-btn>
+
+
 
       <br>
       <br>
@@ -138,7 +143,7 @@
 
 <script>
 // import store from '../store'
-
+import axios from 'axios'
 export default {
   name: 'Main',
   data() {
@@ -179,9 +184,13 @@ export default {
         // 내가 보내고 싶은 놈들은 한꺼번에 담는다
         const data = {
           title: title, //서버로 받아야하는 변수 : 내가 받은 변수
-          user_id:user_id, //동일
+          user_id:'', //동일
           public:+(public_0), //동일
         }
+        //this,$store.dispatch('logincheck').
+        //.then((res)=> {
+         // this.data.user_id=res.data.user_id
+        //})
         this.$store.dispatch('vocaSave',data) // store 에 있는 vocaSave함수를 실행한다
               // 아까만든 data를 보내줌
 
@@ -205,7 +214,22 @@ export default {
               this.messages.unshift(message)
               this.user=null
               this.comment=null
-          }
+          },
+
+
+
+      // 임시방편
+      fetchData() {
+      axios.get('http://3.35.216.91/voca/vocabulary/show')
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+          
+
   }
 
 </script>
