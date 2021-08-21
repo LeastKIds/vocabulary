@@ -5,7 +5,7 @@ import axios from "axios"
 export default {
     actions : {
             vocaSave(_,data){ //내가 원하는 함수를 만듬
-                return axios.post('http://3.35.216.91/api/voca/vocabulary/store',data) // 리턴 post 는 보내는것 get는 받는것 /api/꼭 줘야함, 
+                return axios.post('http://3.35.216.91/voca/vocabulary/store',data) // 리턴 post 는 보내는것 get는 받는것 /api/꼭 줘야함, 
                 // 원래는 data자리에 {}가있지만 메인에서 내가 한꺼번에 보낼 놈들은 묶어 놨으니 그걸 사용
 
                 .then(res => { // then은 오류가 아닌 결과값을 받는것 response,res 다 쓸 수 있음 (서버가 보내는 값)
@@ -20,7 +20,15 @@ export default {
                 console.log('err')               
                 return Promise.reject(err) 
             })
-            }
+            },
+            // vocaLoad(_,data){
+            //     return axios.get('http://3.35.216.91/voca/vocabulary/show',data)
+            
+            //     .then(res => {
+            //         if(res.status == 200 )}
+            //         )
+            // }
+            
     
         }
 }

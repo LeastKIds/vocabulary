@@ -43,7 +43,9 @@
             >정렬</v-btn>
             &nbsp;
 
-          <button v-on:click="fetchData">get data</button>
+          <v-btn 
+          v-on:click="fetchData"
+          >get data</v-btn>
 
 
 
@@ -215,9 +217,9 @@ export default {
 
 
 
-
-      fetchData: function() {
-      axios.get('http://localhost:8000/voca/vocabulary/show')
+      // 임시방편
+      fetchData() {
+      axios.get('http://3.35.216.91/voca/vocabulary/show')
         .then(function(response) {
           console.log(response);
         })
