@@ -193,7 +193,8 @@ export default {
             }
           )
 
-        }
+        },
+
       },
       save(){
               const message= {
