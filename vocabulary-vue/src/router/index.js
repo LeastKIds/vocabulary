@@ -2,6 +2,7 @@ import Vue from 'vue'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
+import Main_P from '@/components/Main_P'
 import WordBook from '@/components/WordBook'
 import ProFile from '@/components/ProFile'
 // import Navigation from '@/components/Navigation'
@@ -16,6 +17,11 @@ const routes = [
   { path: '/',       
     name: 'Main',   
     component:Main,
+    
+  },
+  { path: '/Main_P',       
+    name: 'Main_P',   
+    component:Main_P,
     
   },
 

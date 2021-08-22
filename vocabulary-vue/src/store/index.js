@@ -5,7 +5,7 @@ import signout from './modules/signout'
 import signup from './modules/signup'
 import loginCheck from './modules/loginCheck'
 import mainvoca from './modules/mainvoca'
-
+import mainvoca_p from './modules/mainvoca_p'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -15,6 +15,6 @@ export default new Vuex.Store({
         signup,
         loginCheck,
         mainvoca,
-        
+        mainvoca_p,
     }
 })
