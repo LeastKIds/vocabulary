@@ -43,7 +43,7 @@ Route::middleware(['cors'])->group(function(){
             Route::get('show', [VocaContorller::class, 'show']);
             Route::post('store', [VocaContorller::class, 'store']);
             Route::delete('/delete/{id}', [VocaContorller::class, 'delete']);
-            Route::put('/edit/{id}',[VocaContorller::class, 'edit']);
+            Route::post('/edit/{id}',[VocaContorller::class, 'edit']);
             Route::get('/myVoca',[VocaContorller::class, 'myVoca']);
             Route::get('/mySearch/{search}',[VocaContorller::class, 'mySearch']);
             Route::get('/search/{search}',[VocaContorller::class, 'search']);
