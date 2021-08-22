@@ -14,6 +14,7 @@ export default new Vuex.Store({
         signout,
         signup,
         loginCheck,
-        mainvoca
+        mainvoca,
+        
     }
 })

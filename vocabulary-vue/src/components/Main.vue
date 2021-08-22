@@ -43,10 +43,6 @@
             >정렬</v-btn>
             &nbsp;
 
-          <v-btn 
-          v-on:click="fetchData"
-          >get data</v-btn>
-
 
 
       <br>
@@ -57,26 +53,27 @@
     </ul>
     <p></p>
     
-      <!-- <v-card>
-      <v-list-item one-line >
-      <v-list-item-content>
-        <v-list-item-title class="text-h5 mb-1">
-          単語帳１
-        </v-list-item-title>
-      </v-list-item-content>
 
-      </v-list-item>
+        <!-- 여기에 v-while 써야함 -->
+      <!-- v card 를 각각 만들어 줘야함 --><ul><li v-for="voca in vocaInfo" v-bind:key="voca.id">
+      <v-card style="width:100%" height="180" >
+        <!-- 여기서 id 안에 배열 하나가 들어간거 -->
+        <v-toolbar dark @click="vocaLink">
+          <v-toolbar-title >{{voca.title}}</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text >
+          writer : {{voca.user_id}}
+        </v-card-text>
+        <v-card-text>
+          date : {{voca.created_at}}
+        </v-card-text>
+      </v-card>
+    </li></ul>
 
-    <v-card-actions>
-      <v-btn
-        outlined
-        rounded
-        text
-      >
-        Button
-      </v-btn>
-    </v-card-actions>
-  </v-card> -->
+
+  <!-- <ul>
+    <li v-for="title in vocaInfo" v-bind:key="title">{{ title }}</li>
+  </ul> -->
              </v-flex>
 
 
@@ -143,7 +140,7 @@
 
 <script>
 // import store from '../store'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'Main',
   data() {
@@ -152,9 +149,28 @@ export default {
       btnshow: true,
       user : null,
       comment : null, 
-      messages:[],
+      vocaInfo: [],
+      no:'', //단어장 숫자처리
+      list:'' //리스트 데이터
     }
   },
+  mounted () {
+                this.$store.dispatch('vocaLoad') // store 에 있는 vocaSave함수를 실행한다
+              // 아까만든 data를 보내줌
+
+          .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
+            console.log(res) // 콘솔에 res 를 찍어줌
+              this.vocaInfo = res.data
+          }).catch( // 이것은 오류 코드
+            err=>{
+              console.log(err)
+            }
+          )
+
+
+  },
+
+
   created() {
     
   },
@@ -169,22 +185,25 @@ export default {
           console.log(err)
         })
       },
+  
+
+
         vo_plus() {
         const title = prompt('단어장 제목을 입력하세요~', '무제');
         if (title==null) {return }
-        const user_id = prompt('유저 아이디', '무제');
-        if (user_id==null) {return }
-        const public_0 = prompt('공개여부', '0');
-        if (public_0==null) {return }
-
         console.log(title);
-        console.log(user_id);
+        const user_id = prompt('유저 아이디', '무제');
+        console.log(user_id); 
+        if (user_id==null) {return }
+        const public_0 = prompt('비공개 = 0 공개 = 1', '1');
+        if (public_0==null) {return }
         console.log(public_0);
+        
         // get, post, delete, put << 다 똑같지만 delete,put은 post
         // 내가 보내고 싶은 놈들은 한꺼번에 담는다
         const data = {
           title: title, //서버로 받아야하는 변수 : 내가 받은 변수
-          user_id:'', //동일
+          user_id: user_id, //동일
           public:+(public_0), //동일
         }
         //this,$store.dispatch('logincheck').
@@ -196,15 +215,15 @@ export default {
 
           .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
             console.log(res) // 콘솔에 res 를 찍어줌
+            window.location.reload() //
           }).catch( // 이것은 오류 코드
             err=>{
               console.log(err)
             }
           )
 
-        }
-      },
-      save(){
+        },
+        save(){
               const message= {
                   user:this.user,
                   comment:this.comment,
@@ -214,19 +233,15 @@ export default {
               this.user=null
               this.comment=null
           },
+          vocaLink(){
+            console.log("hello")
+          }
 
 
 
       // 임시방편
-      fetchData() {
-      axios.get('http://3.35.216.91/voca/vocabulary/show')
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
+
+      },
           
 
   }
@@ -241,12 +256,14 @@ h1, h2 {
   text-align:CENTER;
 }
 ul {
+  list-style: none;
   list-style-type: none;
   padding: 10;
 }
 li {
   display: inline-block;
-  margin: 0 10px;
+  margin: 15px;
+  float : left;
 }
 a {
   color: #42b983;
