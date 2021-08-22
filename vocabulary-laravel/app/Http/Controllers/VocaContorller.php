@@ -83,7 +83,8 @@ class VocaContorller extends Controller
 
         $title = $request['title'];
         $public = $request['public'];
-        $user_id = auth() -> user()['id'];
+//        $user_id = auth() -> user()['id'];
+        $user_id =1;
 
 
         $validator = Validator::make(
