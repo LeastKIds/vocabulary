@@ -70,7 +70,8 @@ class VocaContorller extends Controller
     }
 
     public function delete($id) {
-        $user_id = auth()->user()['id'];
+//        $user_id = auth()->user()['id'];
+        $user_id = 1;
         $post = Vocabulary::where('user_id',$user_id) -> find($id);
         $post -> delete();
 
