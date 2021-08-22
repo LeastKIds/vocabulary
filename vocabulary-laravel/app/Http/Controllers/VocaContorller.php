@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vocabulary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class VocaContorller extends Controller
@@ -17,7 +18,10 @@ class VocaContorller extends Controller
     public function show()
     {
 
-        $voca = Vocabulary::where('public', 1) -> orderBy('created_at','DESC') -> get();
+        $voca = Vocabulary::where('public', 1) ->
+        select('vocabularies.*',
+            DB::raw('DATE_FORMAT(vocabularies.created_at,"%Y-%m-%d %h:%i %p") as day'))
+        -> orderBy('created_at','DESC') -> get();
 
 
         return $voca;
