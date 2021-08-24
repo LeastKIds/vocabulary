@@ -119,14 +119,16 @@ class VocaContorller extends Controller
 
     public function myVoca()
     {
-        $id=auth()->user()['id'];
-        $voca = Vocabulary::where('user_id',$id) -> orderBy('created_at','DESC') -> get();
+//        $id=auth()->user()['id'];
+        $user_id = 1;
+        $voca = Vocabulary::where('user_id',$user_id) -> orderBy('created_at','DESC') -> get();
 
         return $voca;
     }
 
     public function mySearch($search) {
-        $voca = Vocabulary::where('user_id', auth()->user()['id']) -> where('title', 'like', '%'.$search.'%') -> get();
+        $user_id = 1;
+        $voca = Vocabulary::where('user_id', $user_id) -> where('title', 'like', '%'.$search.'%') -> get();
 
         return $voca;
     }
