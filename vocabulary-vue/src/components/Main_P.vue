@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="Main_P">
     <v-container >
       <v-layout column>
       <!-- 타이틀 영역 -->
@@ -28,7 +28,7 @@
               color="accent"
               elevation="5"
               rounded
-            v-on:click="vo_myload"
+            v-on:click="vo_publicload"
             >개인 단어장</v-btn>
             &nbsp;
             <v-btn
@@ -165,7 +165,7 @@
 // import store from '../store'
 // import axios from 'axios'
 export default {
-  name: 'Main',
+  name: 'Main_P',
   data() {
     return {
       msg: '메인화면입니다',
@@ -180,7 +180,7 @@ export default {
     }
   },
   mounted () {
-                this.$store.dispatch('vocaLoad') // store 에 있는 vocaSave함수를 실행한다
+                this.$store.dispatch('vocaMyLoad') // store 에 있는 vocaSave함수를 실행한다
               // 아까만든 data를 보내줌
 
           .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
@@ -203,7 +203,7 @@ export default {
   methods: {
     
     logout() {
-        this.$store.dispatch('signout')
+        this.$store.dispatch('logout')
         .then(() => {
           this.$router.replace('signin')
         })
@@ -234,7 +234,7 @@ export default {
         //.then((res)=> {
          // this.data.user_id=res.data.user_id
         //})
-        this.$store.dispatch('vocaSave',data) // store 에 있는 vocaSave함수를 실행한다
+        this.$store.dispatch('vocaMySave',data) // store 에 있는 vocaSave함수를 실행한다
               // 아까만든 data를 보내줌
 
           .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
@@ -265,7 +265,7 @@ export default {
           public:+(public_0_update), //동일
         }
 
-        this.$store.dispatch('vocaUpdateP',data) // store 에 있는 vocaSave함수를 실행한다
+        this.$store.dispatch('vocaMyUpdateP',data) // store 에 있는 vocaSave함수를 실행한다
               // 아까만든 data를 보내줌
 
           .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
@@ -283,7 +283,7 @@ export default {
       vo_delete_p(id){
         console.log(id);
                 const url = "api/voca/vocabulary/delete/"+id
-                this.$store.dispatch('vocaDeleteP',url)
+                this.$store.dispatch('vocaMyDeleteP',url)
 
           .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
             console.log(res) // 콘솔에 res 를 찍어줌
@@ -294,8 +294,8 @@ export default {
             }
           )
       },
-      vo_myload(){
-          this.$router.replace('/Main_P')
+      vo_publicload(){
+          this.$router.replace('/')
       },
         save(){
               const message= {

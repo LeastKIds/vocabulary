@@ -2,35 +2,9 @@
   <div>
     <v-container>
       <v-row>
-        <v-col
-          align="center"
-          class="justify around"
-          v-for="btn in buttons"
-          :key="btn.id"
-          cols="3"
-          sd="1"
-        >
-          <v-btn
-            style="width: 280px"
-            v-bind:color="!btn.on ? 'none' : 'blue'"
-            @click="clickedBtn(btn)"
-            >뒤집기 {{ btn.id }}</v-btn
-          >
-        </v-col>
-        <v-col>
-          <v-btn
-            class="shu"
-            align="right"
-            v-bind:color="!shuffle ? 'error' : 'success'"
-            @click="shuffleOn"
-          >
-            <!-- 버튼 클릭시 셔플이 On되고 버튼색이 변한다 기능구현:X  boolean값이라 재클릭시 색이 안돌아감 수정필요-->
-            섞기
-          </v-btn>
-        </v-col>
+        <v-col><h1>단어장 제목</h1></v-col>
       </v-row>
-
-      <v-row class="word" v-for="w in words" :key="w.id">
+      <v-row class="word" v-for="(w, index) in words" :key="index">
         <!-- v-for="n in 5" :key="n.id" -->
         <v-col cols="4" md="3">
           <v-text-field
@@ -49,15 +23,30 @@
           <v-text-field v-model="w.korean" label="뜻"></v-text-field>
           <!-- <p>{{ w.korean }}</p> -->
         </v-col>
-        <v-col>
-          <v-btn class="ma-2" text icon color="blue lighten-2">
-            <v-icon>mdi-thumb-up</v-icon>
+        <!-- 별클릭시 색변환 구현X -->
+        <v-col class="ma-3">
+          <v-btn
+            class="hover"
+            icon
+            @mouseover="ishovering = true"
+            @mouseleave="ishovering = false"
+            @click="ishovering = !ishovering"
+          >
+            <v-icon>mdi-star</v-icon>
           </v-btn>
-          <v-btn @click="removeList()">X</v-btn></v-col
+          <v-btn color="primary" @click="removeList(index)">X</v-btn></v-col
         >
       </v-row>
       <div class="my-2" align="right">
-        <v-btn color="warning" dark large>
+        <v-btn color="primary"
+          ><router-link
+            to="/wordread"
+            style="text-decoration: none"
+            class="white--text"
+            >Read임시페이지</router-link
+          ></v-btn
+        >
+        <v-btn color="#00B8D4" dark large @click="wordSave()">
           저장하기 <v-icon right dark> mdi-cloud-upload </v-icon></v-btn
         >
       </div>
@@ -75,26 +64,20 @@
 export default {
   data() {
     return {
-      buttons: [
-        { id: 1, on: false },
-        { id: 2, on: false },
-        { id: 3, on: false },
+      words: [
+        {
+          id: 0,
+          chinese_character: "水泳",
+          hiragana: "すいえい",
+          korean: "수영",
+        },
       ],
-      words: [{ id: 0, chinese_character: "", hiragana: "", korean: "" }],
-      // chinese_character: [],
-      // hiragana: [],
-      // korean: [],
-      shuffle: false,
       count: 0,
+      ishovering: false,
+      hoverColor: "",
     };
   },
   methods: {
-    shuffleOn() {
-      this.shuffle = true;
-    },
-    clickedBtn(w) {
-      this.buttons[w.id - 1].on = true;
-    },
     wordAdd() {
       this.words.push({
         id: ++this.count,
@@ -104,19 +87,30 @@ export default {
       }),
         console.log(this.words);
     },
-    removeList() {
-      // this.words.splice(this.words.id, 1);
-      const index = this.words.indexOf(this.words.id);
-      this.words.splice(index - 2, 1);
+    removeList(index) {
+      this.$delete(this.words, index);
+    },
+    wordSave() {
+      const data = {
+        vocabulary_id: "",
+        word: this.words,
+      };
+      console.log(data);
+      this.$store
+        .dispatch("wordPush", data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
 </script>
 
 <style scoped>
-.blue {
-  width: 200px;
-  height: 200px;
-  background-color: blue;
+.hover:hover {
+  color: yellow;
 }
 </style>

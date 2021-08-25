@@ -2,7 +2,9 @@ import Vue from 'vue'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
+import Main_P from '@/components/Main_P'
 import WordBook from '@/components/WordBook'
+import WordRead from '@/components/WordRead'
 import ProFile from '@/components/ProFile'
 // import Navigation from '@/components/Navigation'
 import VueRouter from 'vue-router'
@@ -28,6 +30,11 @@ const routes = [
         next('/signin')
       })
     }
+    
+  },
+  { path: '/Main_P',       
+    name: 'Main_P',   
+    component:Main_P,
     
   },
 
@@ -73,6 +80,12 @@ const routes = [
     path: '/wordbook', 
     name: 'WordBook', 
     component:WordBook,
+    meta:{requiresAuth:true}
+  },
+  { 
+    path: '/wordread', 
+    name: 'WordRead', 
+    component:WordRead,
     meta:{requiresAuth:true}
   },
   {

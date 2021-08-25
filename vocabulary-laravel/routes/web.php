@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VocaContorller;
 use App\Http\Controllers\WordController;
@@ -42,7 +43,7 @@ Route::middleware(['cors'])->group(function(){
             Route::get('show', [VocaContorller::class, 'show']);
             Route::post('store', [VocaContorller::class, 'store']);
             Route::delete('/delete/{id}', [VocaContorller::class, 'delete']);
-            Route::put('/edit/{id}',[VocaContorller::class, 'edit']);
+            Route::post('/edit/{id}',[VocaContorller::class, 'edit']);
             Route::get('/myVoca',[VocaContorller::class, 'myVoca']);
             Route::get('/mySearch/{search}',[VocaContorller::class, 'mySearch']);
             Route::get('/search/{search}',[VocaContorller::class, 'search']);
@@ -59,9 +60,15 @@ Route::middleware(['cors'])->group(function(){
 
 
 
+
+
     });
 
-
+    Route::prefix('admin') -> group(function () {
+        Route::get('/users', [AdminController::class,'users']);
+        Route::get('/vocabularies', [AdminController::class,'vocabularies']);
+        Route::get('/words/{vocabulary_id}', [AdminController::class,'words']);
+    });
 
 
 });
