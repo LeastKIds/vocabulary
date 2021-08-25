@@ -16,6 +16,18 @@ const routes = [
   { path: '/',       
     name: 'Main',   
     component:Main,
+    beforeEnter:(to, from, next) => {
+      store.dispatch('loginCheck')
+      .then((res) => {
+        console.log(res)
+        next()
+      })
+      .catch((err) => {
+        console.log(err)
+        console.log('Check ERROR')
+        next('/signin')
+      })
+    }
     
   },
 
@@ -26,7 +38,7 @@ const routes = [
       store.dispatch('loginCheck')
       .then(res => {
         console.log(res)
-        if(res.login === 1){
+        if(res === 1){
           alert('You already Signin')
           next('/')
         } else
@@ -79,11 +91,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some((recode) => recode.meta.requiresAuth)) {
-    console.log('Login Check')
     store.dispatch('loginCheck')
     .then(res => {
-      console.log(res.data)
-      if(res.data.login === 0){
+      console.log(res)
+      if(res.login === 0){
         alert('Signin please')
         next('/signin')
         close;

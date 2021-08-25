@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <v-navigation-drawer
-        v-if="!isChecked"
-        v-model="drawer"
+    <div @click="logCheck">
+        <v-navigation-drawer   
         :mini-variant.sync="mini"
         permanent
         absolute
@@ -11,8 +9,12 @@
           <v-list-item-avatar>
             <v-img src="../assets/yomi.jpg"></v-img>
           </v-list-item-avatar>
-  
-          <v-list-item-title></v-list-item-title>
+          
+          <v-list-item-title v-if="loginStatus == 1">{{ userinfo.user.email }}</v-list-item-title>
+          <v-list-item-title v-else>UNKNOWN</v-list-item-title>
+          
+          <v-list-item v-if="loginStatus == 1"> {{ userinfo.user.name }}</v-list-item> 
+          
           <v-btn
             icon
             @click.stop="mini = !mini"
@@ -20,7 +22,6 @@
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
         </v-list-item>
-
         <v-divider></v-divider>
   
         <v-list dense>
@@ -41,12 +42,12 @@
         <template v-slot:append>
           <div class="pa-2">
             <v-icon v-if="mini" class="pl-2" style="color:red">mdi-power</v-icon>
-            <v-btn color="error" v-else-if="!mini" block @click="logout">
+            <v-btn color="error" v-else-if="loginStatus == 1" block @click="logout">
               Logout
             </v-btn>
-            <!-- <v-btn color="error" block @click="logout">
-              Logout
-            </v-btn> -->
+            <v-btn color="success" v-else block @click="login">
+              login
+            </v-btn>
           </div>
         </template>
       </v-navigation-drawer>
@@ -59,9 +60,7 @@ export default {
   data() {
     return{
       mini: true,
-      drawer: true,
-      loginStatus: false,
-      isChecked: false,
+      loginStatus: 0,
       items: [
         { title: 'Home', icon: 'mdi-home-city', route:'/' },
         { title: 'My Account', icon: 'mdi-account', route:'/profile' },
@@ -82,34 +81,48 @@ export default {
     }
   },
    
-  created() { 
-    if(document.location.pathname === '/signin') { 
-      this.isChecked = true; 
-    }
+  mounteds() {
+    this.$emit('show')
   },
   methods: {
     logout() {
         store.dispatch('signout')
         .then(() => {
           this.$router.replace('signin')
+          this.loginStatus = 0
         })
         .catch(err => {
-          alert('You are not login')
-          this.$router.replace('signin')
+          alert('SIGNOUT ERR') 
           console.log(err)
         })
       },
     login() {
       this.$router.replace('signin')
+      
     },
+    logCheck() {
+      if(this.loginStatus == 0) {
+        store.dispatch('loginCheck')
+        .then((res) => {
+          this.userinfo = res
+        })
+        .catch(() => {
+          console.log('Check Error')
+        })
+        this.loginStatus = store.state.loginCheck.loginCheck
+      }
+    }
+    
   },
 
-  computed:{
-    getLoginCheck () { return store.state.loginCheck }
+  mounted() {
+    // setInterval(this.logCheck, 5000)
   },
   watch: {
-    getLoginCheck (Val) {
-      console.log('login : ', Val)
+    loginStatus (Val) {
+      console.log(this.$router.currentRoute.path)
+      console.log('login : ', Val) 
+      this.loginStatus = Val
     }
   }
   

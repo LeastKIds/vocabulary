@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import store from '../store'
 export default {
   name: 'login',
   data(){
@@ -71,9 +72,7 @@ export default {
       this.$refs.form.validate()
     },
     login(email, password) {
-      console.log(email)
-      console.log(password)
-      this.$store.dispatch('signin', {email, password})
+      store.dispatch('signin', {email, password})
       .then(() => {
         this.$router.replace('/')
       })
