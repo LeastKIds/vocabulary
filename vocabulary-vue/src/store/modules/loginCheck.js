@@ -7,17 +7,14 @@ export default {
     mutations:{
         loginCheck(state, login) {
             state.loginCheck = login
-            console.log('state.loginCheck : ' + state.loginCheck)
         }
     },
     actions:{
         loginCheck({commit}) {
-            console.log('hello')
-            axios.get('/api/auth/user')
+            return axios.get('/api/auth/user')
             .then((res) => {
-                console.log(res)
                 commit('loginCheck', res.data.login)
-                return res.data.login
+                return res.data
             })
             .catch((err) => {
                 console.log(err)

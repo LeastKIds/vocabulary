@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VocaContorller;
 use App\Http\Controllers\WordController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,9 +28,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
 
-
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/login', [AuthenticationController::class, 'login']);
+Route::post('/logout', [AuthenticationController::class, 'logout']);
 
 Route::middleware(['cors'])->group(function(){
     Route::get('/csrf_token', function(){

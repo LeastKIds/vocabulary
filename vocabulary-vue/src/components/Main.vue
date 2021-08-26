@@ -203,7 +203,7 @@ export default {
   methods: {
     
     logout() {
-        this.$store.dispatch('logout')
+        this.$store.dispatch('signout')
         .then(() => {
           this.$router.replace('signin')
         })
