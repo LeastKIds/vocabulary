@@ -13,20 +13,23 @@ class AuthenticationController extends Controller
         // http://blog.ujsstudio.com/2020/03/17/laravel인증기능-커스텀/
 
         $credentials = $request->only('email', 'password');
+        $user = auth()->user();
         if(Auth::attempt($credentials)) {
-            return response(auth()->user());
+            return response(['user' => $user, 'success' => 1]);
         }
         
         // $request -> session() -> regenerate();
 
         // $result = ['user' => auth()->user(), 'success' => 1,];
-        return response("Login Fail");
+        return response(['error' => '이메일 또는 비밀번호가 맞지 않습니다.', 'success' => 0, 'user' => $user]);
         
     }
 
     function logout () {
+        
         Auth::logout();
-        return response(['user' => auth()->user()]);
+        
+        return response(['user' => auth()->user(), 'success' => 1]);
         // return response() -> json(['user' => auth()->user()]);
     }
 
@@ -35,10 +38,10 @@ class AuthenticationController extends Controller
         $user = auth()->user();
 
         if (Auth::check()) {
-            return response($user);
+            return response(['login' => 1, 'user' => $user]);
         }
 
-        return response($user);
+        return response(['login' => 0, 'user' => $user]);
     }
 
 }
