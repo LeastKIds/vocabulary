@@ -34,7 +34,7 @@ class RegisterController extends Controller
         ]);
 
         // dd($request);
-        return response("done");
+        return response(['success' => 1]);
     }
 
 }
