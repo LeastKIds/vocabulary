@@ -35,4 +35,15 @@ class AuthenticationController extends Controller
         // return response() -> json(['user' => auth()->user()]);
     }
 
+    function loginCheck() {
+        
+        $user = auth()->user();
+
+        if (Auth::check()) {
+            return response($user);
+        }
+
+        return response($user);
+    }
+
 }
