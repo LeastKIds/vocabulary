@@ -46,7 +46,7 @@
             >Read임시페이지</router-link
           ></v-btn
         >
-        <v-btn color="#00B8D4" dark large @click="wordSave()">
+        <v-btn color="#00B8D4" dark large @click="wordSave">
           저장하기 <v-icon right dark> mdi-cloud-upload </v-icon></v-btn
         >
       </div>
@@ -92,12 +92,11 @@ export default {
     },
     wordSave() {
       const data = {
-        vocabulary_id: "",
+        vocabulary_id: 1, // 단어장의 id값을 받아와야함
         word: this.words,
       };
-      console.log(data);
-      this.$store
-        .dispatch("wordPush", data)
+      // console.log(data);
+      this.$store.dispatch("wordPush", data)
         .then((res) => {
           console.log(res);
         })

@@ -83,7 +83,7 @@ const routes = [
     meta:{requiresAuth:true}
   },
   { 
-    path: '/wordread', 
+    path: '/wordread/', // :id?를 추가함으로써 parameter가 있어도 없어도 post 페이지에는 정상적으로 접속할 수 있다  현재는 x
     name: 'WordRead', 
     component:WordRead,
     meta:{requiresAuth:true}

@@ -29,41 +29,33 @@
           </v-btn>
         </v-col>
       </v-row>
-
-      <v-row class="word" v-for="(w, index) in words" :key="index">
-        <!-- v-for="n in 5" :key="n.id" -->
-        <v-col cols="4" md="3">
-          <v-text-field
-            v-model="w.chinese_character"
-            label="한자"
-          ></v-text-field>
-          <!-- <p>{{ w.chinese_character }}</p> -->
-          <!-- outlined
-            color="black" -->
+      <v-row>
+        <v-col>
+          <v-btn v-bind:color="!clicked ? 'none' : 'primary'" @click="wordGet"
+            >클릭</v-btn
+          >
         </v-col>
-        <v-col cols="4" md="3">
-          <v-text-field v-model="w.hiragana" label="히라가나"></v-text-field>
-          <!-- <p>{{ w.hiragana }}</p> -->
+        <v-col>
+          <ul>
+            <li v-for="data in dataword" :key="data.id">
+              <p>
+                {{ data.chinese_character }} &nbsp;&nbsp;
+                {{ data.hiragana }} &nbsp;&nbsp; {{ data.korean }}
+              </p>
+            </li>
+          </ul>
         </v-col>
-        <v-col cols="4" md="3">
-          <v-text-field v-model="w.korean" label="뜻"></v-text-field>
-          <!-- <p>{{ w.korean }}</p> -->
-        </v-col>
-
-            
       </v-row>
       <div class="my-2" align="center">
-        <v-btn color="#42A5F5"  large>
-          <router-link style=text-decoration:none to="/wordbook" class="white--text">단어추가 / 삭제</router-link><v-icon right dark> mdi-cloud-upload </v-icon></v-btn
+        <v-btn color="#42A5F5" large>
+          <router-link
+            style="text-decoration: none"
+            to="/wordbook"
+            class="white--text"
+            >단어추가 / 삭제</router-link
+          ><v-icon right dark> mdi-cloud-upload </v-icon></v-btn
         >
       </div>
-      <!-- <v-bottom-navigation grow horizontal>
-        <v-btn @click="wordAdd">
-          <h3>단어추가</h3>
-          <v-icon color="blue" x-large>mdi-plus</v-icon>
-        </v-btn>
-        
-      </v-bottom-navigation> -->
     </v-container>
   </div>
 </template>
@@ -78,10 +70,24 @@ export default {
         { id: 3, on: false },
       ],
       shuffle: false,
-    }
+      dataword: [],
+      clicked: false,
+    };
   },
   methods: {
-
+    wordGet() {
+      this.clicked = true;
+      this.$store
+        .dispatch("wordGet")
+        .then((res) => {
+          // console.log(res)
+          this.dataword = res.data;
+          console.log(this.dataword);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+  },
 };
 </script>
