@@ -219,9 +219,15 @@ export default {
         const user_id = prompt('유저 아이디', '무제');
         console.log(user_id); 
         if (user_id==null) {return }
-        const public_0 = prompt('비공개 = 0 공개 = 1', '1');
+        let public_0 = confirm("공개 하시겠습니까?")
         if (public_0==null) {return }
+        else if (public_0==true){
+          public_0 = 1;
+        }else if (public_0 ==false){
+          public_0 = 0;
+        }
         console.log(public_0);
+        
         
         // get, post, delete, put << 다 똑같지만 delete,put은 post
         // 내가 보내고 싶은 놈들은 한꺼번에 담는다
@@ -255,8 +261,11 @@ export default {
         const title_update = prompt('단어장 제목을 수정하세요', title);
         if (title_update==null) {return }
     
-        const public_0_update = prompt('비공개 = 0 공개 = 1', public_0);
+        console.log(public_0)
+        let public_0_update = confirm("단어장을 공개로 하시겠습니까?")
         if (public_0_update==null) {return }
+        else if (public_0_update==true){ public_0=1}
+        else if (public_0_update==false){public_0=0}
   
 
     const data = {
@@ -281,6 +290,9 @@ export default {
       this.show1 = !this.show1;
     },
       vo_delete_p(id){
+                        let flag= confirm("정말 삭제 하시겠습니까??");
+                if(flag==false){return ;}
+                if(flag==null){return ;}
         console.log(id);
                 const url = "api/voca/vocabulary/delete/"+id
                 this.$store.dispatch('vocaMyDeleteP',url)
