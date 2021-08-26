@@ -245,7 +245,28 @@ export default {
 
           .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
             console.log(res) // 콘솔에 res 를 찍어줌
-            window.location.reload() //
+
+
+
+
+// 편집할때 화면 재로딩 아니고 그냥 목록만 나열
+
+           this.$store.dispatch('vocaLoad') // store 에 있는 vocaSave함수를 실행한다
+              // 아까만든 data를 보내줌
+
+          .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
+            console.log(res) // 콘솔에 res 를 찍어줌
+                        
+              this.vocaInfo = res.data
+          }).catch( // 이것은 오류 코드
+            err=>{
+              console.log(err)
+            }
+          )
+
+
+
+
           }).catch( // 이것은 오류 코드
             err=>{
               console.log(err)
@@ -279,7 +300,34 @@ export default {
 
           .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
             console.log(res) // 콘솔에 res 를 찍어줌
-            window.location.reload() //
+            
+            
+
+
+
+
+
+ // 편집할때 화면 재로딩 아니고 그냥 목록만 나열
+
+           this.$store.dispatch('vocaLoad') // store 에 있는 vocaSave함수를 실행한다
+              // 아까만든 data를 보내줌
+
+          .then(res =>{ // 아까와 같이 오류 이외의 놈을 서버가 보내줌
+            console.log(res) // 콘솔에 res 를 찍어줌
+              this.vocaInfo = res.data
+          }).catch( // 이것은 오류 코드
+            err=>{
+              console.log(err)
+            }
+          )
+
+
+
+
+
+
+
+
           }).catch( // 이것은 오류 코드
             err=>{
               console.log(err)
