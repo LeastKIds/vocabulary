@@ -36,4 +36,5 @@ class RegisterController extends Controller
         // dd($request);
         return response("done");
     }
+
 }

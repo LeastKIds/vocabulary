@@ -9,11 +9,6 @@ class AuthenticationController extends Controller
 {
     function login (Request $request) {
 
-        // if(!auth() -> attempt($request -> only('email','password'))) {
-        //     $result = ['error' => '이메일 또는 비밀번호가 맞지 않습니다.', 'success' => 0, 'user' => null];
-        //     return response() -> json($result);
-        // }
-
         // https://yoshikixdrum.tistory.com/248
         // http://blog.ujsstudio.com/2020/03/17/laravel인증기능-커스텀/
 
