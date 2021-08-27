@@ -33,8 +33,7 @@ class VocaContorller extends Controller
 
 
         $title = $request['title'];
-//        $user_id = auth() -> user()['id'];
-        $user_id = $request['user_id'];
+        $user_id = auth() -> user()['id'];
         $public = $request['public'];
 
 
@@ -70,8 +69,7 @@ class VocaContorller extends Controller
     }
 
     public function delete($id) {
-//        $user_id = auth()->user()['id'];
-        $user_id = 1;
+        $user_id = auth()->user()['id'];
         $post = Vocabulary::where('user_id',$user_id) -> find($id);
         $post -> delete();
 
@@ -83,8 +81,7 @@ class VocaContorller extends Controller
 
         $title = $request['title'];
         $public = $request['public'];
-//        $user_id = auth() -> user()['id'];
-        $user_id =1;
+        $user_id = auth() -> user()['id'];
 
 
         $validator = Validator::make(
@@ -119,15 +116,14 @@ class VocaContorller extends Controller
 
     public function myVoca()
     {
-//        $id=auth()->user()['id'];
-        $user_id = 1;
-        $voca = Vocabulary::where('user_id',$user_id) -> orderBy('created_at','DESC') -> get();
+        $id=auth()->user()['id'];
+        $voca = Vocabulary::where('user_id',$id) -> orderBy('created_at','DESC') -> get();
 
         return $voca;
     }
 
     public function mySearch($search) {
-        $user_id = 1;
+        $user_id = auth()->user()['id'];
         $voca = Vocabulary::where('user_id', $user_id) -> where('title', 'like', '%'.$search.'%') -> get();
 
         return $voca;

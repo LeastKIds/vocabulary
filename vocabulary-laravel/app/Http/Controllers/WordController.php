@@ -21,8 +21,8 @@ class WordController extends Controller
 
         $vocabulary = Vocabulary::findOrFail($vocabulary_id);
 
-//        $user_id = auth() -> user()['id'];
-        $user_id = 1;
+        $user_id = auth() -> user()['id'];
+//        $user_id = 1;
 
 //        return $words->user_id;
 //
@@ -38,8 +38,8 @@ class WordController extends Controller
     public function store(Request $request) {
 
 
-//        $user_id = auth()->user()['id'];
-        $user_id = 1;
+        $user_id = auth()->user()['id'];
+//        $user_id = 1;
         $vocabulary_id = $request['vocabulary_id'];
 
         $vocabulary = Vocabulary::findOrFail($vocabulary_id);
@@ -105,8 +105,8 @@ class WordController extends Controller
     }
 
     public function delete($id) {
-//        $user_id = auth() -> user()['id'];
-        $user_id = 1;
+        $user_id = auth() -> user()['id'];
+//        $user_id = 1;
         $word = Word::where('user_id',$user_id) -> find($id);
         $word -> delete();
 
@@ -116,8 +116,8 @@ class WordController extends Controller
 
     public function edit(Request $request, $id) {
 
-//        $user_id = auth() -> user()['id'];
-        $user_id = 1;
+        $user_id = auth() -> user()['id'];
+//        $user_id = 1;
         $word = Word::where('user_id',$user_id) -> findOrFail($id);
 
         $chinese_character = $request -> chinese_character;
@@ -135,7 +135,7 @@ class WordController extends Controller
     }
 
     public function important($id) {
-        $user_id = 1;
+        $user_id = auth()->user()['id'];
         $word = Word::where('user_id',$user_id) -> findOrFail($id);
 
         if($word -> important === 0)
@@ -150,7 +150,7 @@ class WordController extends Controller
     }
 
     public function shuffle($id) {
-        $user_id = 1;
+        $user_id = auth()->user()['id'];
         $word = Word::where('user_id', $user_id) -> where('vocabulary_id',$id) -> get();
         $shuffled = $word -> shuffle();
 
